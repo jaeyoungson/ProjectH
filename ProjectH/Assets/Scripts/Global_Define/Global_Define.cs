@@ -11,7 +11,7 @@ namespace Global_Define
         PlayUpdate = 1,
 
     }
-    public enum NonPlayLogic
+    public enum NonPlayLogic   
     {
 
     }

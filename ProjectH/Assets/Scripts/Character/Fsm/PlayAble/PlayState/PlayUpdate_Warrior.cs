@@ -1,9 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Global_Define;
 
-public class PlayUpdate_Warrior : MonoBehaviour
+public class PlayUpdate_Warrior : Fsm_State<PlayAbleLogic>
 {
+    public GameObject playGameObject;
+    public PlayUpdate_Warrior (GameObject playObject): base(PlayAbleLogic.PlayUpdate)
+    {
+        playGameObject = playObject;
+    }
     float moveSpeed = 5.0f;
     // Update is called once per frame
     public void Update()
@@ -14,6 +20,6 @@ public class PlayUpdate_Warrior : MonoBehaviour
         translationX *= Time.deltaTime;
         translationZ *= Time.deltaTime;
 
-        GameManager.Ins.curPlayCharacter.transform.Translate(translationX, GameManager.Ins.curPlayCharacter.transform.position.y, translationZ);
+        playGameObject.transform.Translate(translationX, playGameObject.transform.position.y, translationZ);
     }
 }

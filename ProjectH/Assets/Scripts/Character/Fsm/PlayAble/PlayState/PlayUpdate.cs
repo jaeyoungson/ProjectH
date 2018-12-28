@@ -5,11 +5,13 @@ using Global_Define;
 
 public class PlayUpdate : Fsm_State<PlayAbleLogic>
 {
-    PlayUpdate_Warrior warrior = new PlayUpdate_Warrior();
+    PlayUpdate_Warrior warrior;
+    GameObject playgameObject;
     
-    public  PlayUpdate(): base(PlayAbleLogic.PlayUpdate)
+    public  PlayUpdate(GameObject playObject): base(PlayAbleLogic.PlayUpdate)
     {
-
+        playgameObject = playObject;
+        warrior = new PlayUpdate_Warrior(playgameObject);
     }
 
     public override void Enter()
@@ -20,6 +22,7 @@ public class PlayUpdate : Fsm_State<PlayAbleLogic>
     public override void Update()
     {
         //상태내내 업데이트 해야하는 부분
+        //현재 플레이어가 어떤 케릭터를 조종하고있는지 확인해야함
         warrior.Update();
     }
 

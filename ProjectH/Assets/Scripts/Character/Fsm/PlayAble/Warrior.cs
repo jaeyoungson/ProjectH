@@ -5,13 +5,11 @@ using Global_Define;
 
 public class Warrior : Character
 {
-    GameObject playGameObject;
     private void Awake()
-    {
-        playLogic.AddFsm(new PlayUpdate());
+    {     
+        playLogic.AddFsm(new PlayUpdate(gameObject));
         SetPlayAble(true);
-        playLogic.SetState(PlayAbleLogic.PlayUpdate);
-        playGameObject = GameManager.Ins.getCurPlayCharacter;
+        playLogic.SetState(PlayAbleLogic.PlayUpdate);       
     }
 
 
