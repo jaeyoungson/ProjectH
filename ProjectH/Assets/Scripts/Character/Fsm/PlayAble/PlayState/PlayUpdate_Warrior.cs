@@ -11,6 +11,7 @@ public class PlayUpdate_Warrior : Fsm_State<PlayAbleLogic>
         playGameObject = playObject;
     }
     float moveSpeed = 5.0f;
+     
     // Update is called once per frame
     public void Update()
     {

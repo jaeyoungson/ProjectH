@@ -6,8 +6,8 @@ using UnityEngine;
 public class Fsm_Class<Fsm_Type>
 {
     protected Dictionary<Fsm_Type, Fsm_State<Fsm_Type>> fsmStateList = new Dictionary<Fsm_Type, Fsm_State<Fsm_Type>>();
-    protected Fsm_State<Fsm_Type> curState;
-    protected Fsm_State<Fsm_Type> nextState;
+    protected Fsm_State<Fsm_Type> curState;     //현재스테이트
+    protected Fsm_State<Fsm_Type> nextState;    //다음스테이트
 
     #region -get
     public Fsm_State<Fsm_Type> getcurState

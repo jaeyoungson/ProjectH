@@ -9,9 +9,8 @@ public class Warrior : Character
     {     
         playLogic.AddFsm(new PlayUpdate(gameObject));
         SetPlayAble(true);
-        playLogic.SetState(PlayAbleLogic.PlayUpdate);       
+        playLogic.SetState(PlayAbleLogic.PlayUpdate);
     }
-
 
     private new void Update()
     {        
