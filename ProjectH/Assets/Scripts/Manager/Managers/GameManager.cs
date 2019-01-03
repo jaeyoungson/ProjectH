@@ -7,13 +7,18 @@ public class GameManager : ManagerBase<GameManager>
 
     [SerializeField]
     private GameObject[] userCharacter = new GameObject[3];
-    private PlayCharacter jobState;
+    public PlayCharacter jobState;
     public GameObject curPlayCharacter;
     public GameObject nextPlayCharcter;
 
     private new void Awake()
     {
         curPlayCharacter = userCharacter[(int)PlayCharacter.Warrior];
+    }
+
+    private void Start()
+    {
+        
     }
 
     #region get
@@ -32,23 +37,18 @@ public class GameManager : ManagerBase<GameManager>
 #endregion
     private void Update()
     {
-        if(nextPlayCharcter != null)
-        {
-            curPlayCharacter = nextPlayCharcter;
-            nextPlayCharcter = null;
-        }
     }
 
     public void ChangeCharacterJob()
     {
         if((int)jobState<2)
         {
-            nextPlayCharcter = userCharacter[(int)jobState++];
             jobState++;
+            curPlayCharacter = userCharacter[(int)jobState];           
         }
         else
         {
-            nextPlayCharcter = userCharacter[(int)PlayCharacter.Warrior];
+            curPlayCharacter = userCharacter[(int)PlayCharacter.Warrior];
             jobState = PlayCharacter.Warrior;
         }
     }

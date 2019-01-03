@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class InputManager : ManagerBase<InputManager>
 {
-    public Character playGameObject;
+    public GameObject playGameObject;
+    private Character curPlayCharacter;
 
     // 키코드 변수 목록
     #region KeyCode
@@ -26,13 +27,13 @@ public class InputManager : ManagerBase<InputManager>
         backward = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("backward", "S"));
         left = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("left", "A"));
         right = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("right", "D"));
-        characterChange = (KeyCode)System.Enum.Parse((typeof(KeyCode)), PlayerPrefs.GetString("characterChange", "Quote"));
+        characterChange = (KeyCode)System.Enum.Parse((typeof(KeyCode)), PlayerPrefs.GetString("characterChange", "Tab"));
     }
 
     private void Start()
     {
-        playGameObject = BattleManager.Ins.playingCharacter.GetComponent<Character>();
-      
+        playGameObject = GameManager.Ins.curPlayCharacter;
+        curPlayCharacter = GameManager.Ins.curPlayCharacter.GetComponent<Character>();
     }
     
 
@@ -63,6 +64,7 @@ public class InputManager : ManagerBase<InputManager>
         if (Input.GetKeyDown(characterChange))
         {
             GameManager.Ins.ChangeCharacterJob();
+            playGameObject = GameManager.Ins.curPlayCharacter;
         }
        
 
@@ -71,22 +73,22 @@ public class InputManager : ManagerBase<InputManager>
     #region movefuction
     private void ForwardMove()
     {
-        playGameObject.transform.Translate(Vector3.forward*playGameObject.moveSpeed*Time.deltaTime);
+        playGameObject.transform.Translate(Vector3.forward* curPlayCharacter.moveSpeed*Time.deltaTime);
     }
 
     private void BackwardMove()
     {
-        playGameObject.transform.Translate(Vector3.back * playGameObject.moveSpeed * Time.deltaTime);
+        playGameObject.transform.Translate(Vector3.back * curPlayCharacter.moveSpeed * Time.deltaTime);
     }
 
     private void LeftMove()
     {
-        playGameObject.transform.Translate(Vector3.left * playGameObject.moveSpeed * Time.deltaTime);
+        playGameObject.transform.Translate(Vector3.left * curPlayCharacter.moveSpeed * Time.deltaTime);
     }
 
     private void RightMove()
     {
-        playGameObject.transform.Translate(Vector3.right * playGameObject.moveSpeed * Time.deltaTime);
+        playGameObject.transform.Translate(Vector3.right * curPlayCharacter.moveSpeed * Time.deltaTime);
     }
     #endregion
 }
