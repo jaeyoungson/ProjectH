@@ -19,8 +19,8 @@ namespace Global_Define
     public enum PlayCharacter
     {
         Warrior=0,
-        aa,
-        bb
+        Mage,
+        Archer
     }
 
     

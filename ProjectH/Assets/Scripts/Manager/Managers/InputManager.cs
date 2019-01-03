@@ -32,8 +32,8 @@ public class InputManager : ManagerBase<InputManager>
 
     private void Start()
     {
-        playGameObject = GameManager.Ins.curPlayCharacter;
-        curPlayCharacter = GameManager.Ins.curPlayCharacter.GetComponent<Character>();
+        playGameObject = BattleManager.Ins.curPlayCharacter;
+        curPlayCharacter = BattleManager.Ins.curPlayCharacter.GetComponent<Character>();
     }
     
 
@@ -63,12 +63,8 @@ public class InputManager : ManagerBase<InputManager>
         #endregion
         if (Input.GetKeyDown(characterChange))
         {
-            GameManager.Ins.ChangeCharacterJob();
-            playGameObject = GameManager.Ins.curPlayCharacter;
+            ChangeCharacter();
         }
-       
-
-
     }
     #region movefuction
     private void ForwardMove()
@@ -91,4 +87,10 @@ public class InputManager : ManagerBase<InputManager>
         playGameObject.transform.Translate(Vector3.right * curPlayCharacter.moveSpeed * Time.deltaTime);
     }
     #endregion
+
+    private void ChangeCharacter()
+    {
+        BattleManager.Ins.ChangeCharacterJob();
+        playGameObject = BattleManager.Ins.curPlayCharacter;
+    }
 }
