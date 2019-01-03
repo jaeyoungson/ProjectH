@@ -41,7 +41,7 @@ public class GameManager : ManagerBase<GameManager>
 
     public void ChangeCharacterJob()
     {
-        if((int)jobState<=2)
+        if((int)jobState<2)
         {
             nextPlayCharcter = userCharacter[(int)jobState++];
             jobState++;
