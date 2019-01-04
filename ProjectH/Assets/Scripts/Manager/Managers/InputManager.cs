@@ -5,7 +5,7 @@ using UnityEngine;
 public class InputManager : ManagerBase<InputManager>
 {
     public GameObject playGameObject;
-    private Character curPlayCharacter;
+    public PlayableCharacter curPlayCharacter;
 
     // 키코드 변수 목록
     #region KeyCode
@@ -33,7 +33,7 @@ public class InputManager : ManagerBase<InputManager>
     private void Start()
     {
         playGameObject = BattleManager.Ins.curPlayCharacter;
-        curPlayCharacter = BattleManager.Ins.curPlayCharacter.GetComponent<Character>();
+        curPlayCharacter = BattleManager.Ins.curPlayCharacter.GetComponent<PlayableCharacter>();
     }
     
 

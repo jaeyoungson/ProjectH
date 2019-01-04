@@ -23,6 +23,20 @@ namespace Global_Define
         Archer
     }
 
+    public enum BerserkerState
+    {
+
+    }
+
+    public enum MageState
+    {
+
+    }
+
+    public enum ArcherState
+    {
+
+    }
     
     #endregion
 }

@@ -1,18 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Global_Define;
 
-public class Berserker : Character
+public class Berserker : PlayableCharacter
 {
-    // Start is called before the first frame update
-    void Start()
+    private BerserkerState berserkerState;
+
+    public BerserkerState getBerserkerState
     {
-        
+        get { return berserkerState; }
     }
 
-    // Update is called once per frame
+    public void SetBerserkerState(BerserkerState _berserkerState)
+    {
+        berserkerState = _berserkerState;
+    }
+
     void Update()
     {
-        
+        if (playingCharacter == false)
+        {
+            switch (berserkerState)
+            {
+                default:
+                    break;
+            }
+
+        }
     }
+    
+
+
+
 }
