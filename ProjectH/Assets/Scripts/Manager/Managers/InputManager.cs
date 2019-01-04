@@ -15,9 +15,6 @@ public class InputManager : ManagerBase<InputManager>
     private KeyCode right;//default D
 
     private KeyCode characterChange;//dafault Quote(`)
-
-
-
     #endregion
 
     private new void Awake()

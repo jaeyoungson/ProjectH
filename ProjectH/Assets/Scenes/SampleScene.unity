@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 387175224}
   - component: {fileID: 387175227}
   m_Layer: 0
-  m_Name: aa
+  m_Name: Mage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -282,10 +282,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 387175222}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c73161c3df984242b01cf02fc414ea4, type: 3}
+  m_Script: {fileID: 11500000, guid: acf8f24b1e47f5b429022a9879d3f3ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 0
+  playingCharacter: 0
+  mageState: 0
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,7 +384,7 @@ GameObject:
   - component: {fileID: 656232526}
   - component: {fileID: 656232529}
   m_Layer: 0
-  m_Name: bb
+  m_Name: Archer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -469,10 +471,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 656232524}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c73161c3df984242b01cf02fc414ea4, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ea2b11d9ada29b4fbbe3283c89b6cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 0
+  playingCharacter: 0
+  archerState: 0
 --- !u!1 &1417639156
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,7 +491,7 @@ GameObject:
   - component: {fileID: 1417639158}
   - component: {fileID: 1417639157}
   m_Layer: 0
-  m_Name: warrior
+  m_Name: Berserker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -502,10 +506,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1417639156}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c73161c3df984242b01cf02fc414ea4, type: 3}
+  m_Script: {fileID: 11500000, guid: 72b5313f8ad3e2e4d91e1b04fca17b4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
+  playingCharacter: 0
 --- !u!65 &1417639158
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -608,6 +613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playGameObject: {fileID: 0}
+  curPlayCharacter: {fileID: 0}
 --- !u!4 &1521002972
 Transform:
   m_ObjectHideFlags: 0
@@ -651,13 +657,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f466a30612f284298c0fc78e8e5a48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userCharacter:
-  - {fileID: 1417639156}
-  - {fileID: 387175222}
-  - {fileID: 656232524}
-  jobState: 0
-  curPlayCharacter: {fileID: 0}
-  nextPlayCharcter: {fileID: 0}
 --- !u!4 &1554952671
 Transform:
   m_ObjectHideFlags: 0
@@ -738,7 +737,9 @@ MonoBehaviour:
   - {fileID: 1417639156}
   - {fileID: 387175222}
   - {fileID: 656232524}
-  playingCharacter: {fileID: 0}
+  curPlayCharacter: {fileID: 0}
+  jobState: 0
+  battleState: 0
 --- !u!4 &2121449898
 Transform:
   m_ObjectHideFlags: 0
