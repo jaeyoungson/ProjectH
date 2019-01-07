@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class InputManager : ManagerBase<InputManager>
 {
@@ -13,18 +11,56 @@ public class InputManager : ManagerBase<InputManager>
     private KeyCode backward;//default S
     private KeyCode left;//default A
     private KeyCode right;//default D
+    private KeyCode run;//default LeftShift
 
-    private KeyCode characterChange;//dafault Quote(`)
+    private KeyCode berserker;//default F1
+    private KeyCode mage;//default F2
+    private KeyCode archer;//default F3
+
+    private KeyCode skillNumber1;//default 1
+    private KeyCode skillNumber2;//default 2
+    private KeyCode skillNumber3;//default 3
+    private KeyCode cooperationSkill;//default BackQuote(`)
+    private KeyCode ultimateSkill;//default V
+    private KeyCode evasionSkill;//default Space
+
+    private KeyCode equip;//default p
+    private KeyCode inventory;//default Tab    
+    private KeyCode map;//default M
     #endregion
 
     private new void Awake()
     {
         //키코드 변수에 PlayerPrefs에 있는 커스텀된 string 값을 가져와서 그 코드로변경 없다면 디폴트 값으로 가져옴
+
+        #region moveKey
         forward = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("forward", "W"));
         backward = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("backward", "S"));
         left = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("left", "A"));
         right = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("right", "D"));
-        characterChange = (KeyCode)System.Enum.Parse((typeof(KeyCode)), PlayerPrefs.GetString("characterChange", "Tab"));
+        run = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("run", "LeftShift"));
+        #endregion
+
+        #region Character Change
+        berserker = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("berserker", "F1"));
+        mage = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("mage", "F2"));
+        archer = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("archer", "F3"));
+        #endregion
+
+        #region skill
+        skillNumber1 = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("skillNumber1", "Alpha1"));
+        skillNumber2 = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("skillNumber2", "Alpha2"));
+        skillNumber3 = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("skillNumber3", "Alpha3"));
+        cooperationSkill = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("cooperationSkill", "BackQuote"));
+        ultimateSkill = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ultimateSkill", "V"));
+        evasionSkill = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("evasionSkill", "Space"));
+        #endregion
+
+        #region util
+        equip = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("equip", "P"));
+        inventory = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("inventory", "Tab"));
+        map = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("map", "M"));
+        #endregion
     }
 
     private void Start()
@@ -57,11 +93,74 @@ public class InputManager : ManagerBase<InputManager>
             RightMove();
         }
 
-        #endregion
-        if (Input.GetKeyDown(characterChange))
+        if(Input.GetKeyDown(run))
         {
-            ChangeCharacter();
+            Run();
         }
+
+        #endregion
+        #region CharacterChange
+        if(Input.GetKeyDown(berserker))
+        {
+            BerserkerChange();
+        }
+        if(Input.GetKeyDown(mage))
+        {
+            MageChange();
+        }
+        if(Input.GetKeyDown(archer))
+        {
+            ArcherChange();
+        }
+        #endregion
+        #region Skill
+        if (Input.GetKeyDown(skillNumber1))
+        {
+            SkillNumberOne();
+        }
+
+        if(Input.GetKeyDown(skillNumber2))
+        {
+            SkillNumberTwo();
+        }
+
+        if(Input.GetKeyDown(skillNumber3))
+        {
+            SkillNumberThree();
+        }
+
+        if(Input.GetKeyDown(cooperationSkill))
+        {
+            CooperationSkill();
+        }
+
+        if(Input.GetKeyDown(ultimateSkill))
+        {
+            UltimateSkill();
+        }
+
+        if(Input.GetKeyDown(evasionSkill))
+        {
+            EvastionSkill();
+        }
+        #endregion
+        #region utilkey
+        if(Input.GetKeyDown(equip))
+        {
+            EquipOpen();
+        }
+
+        if(Input.GetKeyDown(inventory))
+        {
+            InventoryOpen();
+        }
+
+        if(Input.GetKeyDown(map))
+        {
+            MapOpen();
+        }
+        #endregion
+
     }
     #region movefuction
     private void ForwardMove()
@@ -83,11 +182,77 @@ public class InputManager : ManagerBase<InputManager>
     {
         playGameObject.transform.Translate(Vector3.right * curPlayCharacter.moveSpeed * Time.deltaTime);
     }
+
+    private void Run()
+    {
+        Debug.Log("run");
+    }
     #endregion
 
-    private void ChangeCharacter()
+    #region CharacterChange
+    private void BerserkerChange()
     {
-        BattleManager.Ins.ChangeCharacterJob();
-        playGameObject = BattleManager.Ins.curPlayCharacter;
+        Debug.Log("Berserker Change");
     }
+
+    private void MageChange()
+    {
+        Debug.Log("Mage Change");
+    }
+
+    private void ArcherChange()
+    {
+        Debug.Log("Archer Change");
+    }
+    #endregion
+
+    #region Skill Fuction
+    private void SkillNumberOne()
+    {
+        Debug.Log("SkillNumberOne");
+    }
+
+    private void SkillNumberTwo()
+    {
+        Debug.Log("SkillNumberTwo");
+    }
+
+    private void SkillNumberThree()
+    {
+        Debug.Log("SkillNumberThree");
+    }
+
+    private void CooperationSkill()
+    {
+        Debug.Log("CooperationSkill");
+    }
+
+    private void UltimateSkill()
+    {
+        Debug.Log("UltimateSkill");
+    }
+
+    private void EvastionSkill()
+    {
+        Debug.Log("EvastionSkill");
+    }
+    #endregion
+
+    #region Utilfuction
+    private void EquipOpen()
+    {
+        Debug.Log("EquipOpen");
+    }
+
+    private void InventoryOpen()
+    {
+        Debug.Log("Inventory Open");
+    }
+
+    private void MapOpen()
+    {
+        Debug.Log("Map Open");
+    }
+    #endregion
+
 }
