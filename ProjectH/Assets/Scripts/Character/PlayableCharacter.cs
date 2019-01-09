@@ -19,6 +19,8 @@ public class PlayableCharacter : Character
             {
                 case CharacterState.Idle:
                     break;
+                case CharacterState.Run:
+                    break;
                 case CharacterState.Move:
                     break;
                 case CharacterState.Skill:
@@ -41,11 +43,11 @@ public class PlayableCharacter : Character
     protected virtual void Move() { }
     #endregion
     #region public virtual
-    public virtual void SkillNumberOne() { }
-    public virtual void SkillNumberTwo() { }
+    public virtual void SkillNumberOne()   { }
+    public virtual void SkillNumberTwo()   { }
     public virtual void SkillNumberThree() { }
-    public virtual void EvasionSkill() { }
-    public virtual void UltimateSkill() { }
+    public virtual void EvasionSkill()     { }
+    public virtual void UltimateSkill()    { }
     public virtual void CooperationSkill() { }
     #endregion
 }

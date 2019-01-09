@@ -285,8 +285,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf8f24b1e47f5b429022a9879d3f3ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
+  moveSpeed: 3
+  playCharacter: 0
+  spState: 0
+  poison_Resist: 0
+  bleeding_Resist: 0
+  defdown_Resist: 0
+  e_shock_Resist: 0
+  stun_Resist: 0
+  addHp: 0
+  addSp: 0
+  addAtk: 0
+  addDef: 0
   playingCharacter: 0
+  monsterList: []
+  exp: 0
+  next_Exp: 0
   mageState: 0
 --- !u!1 &534669902
 GameObject:
@@ -474,8 +488,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea2b11d9ada29b4fbbe3283c89b6cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
+  moveSpeed: 3
+  playCharacter: 0
+  spState: 0
+  poison_Resist: 0
+  bleeding_Resist: 0
+  defdown_Resist: 0
+  e_shock_Resist: 0
+  stun_Resist: 0
+  addHp: 0
+  addSp: 0
+  addAtk: 0
+  addDef: 0
   playingCharacter: 0
+  monsterList: []
+  exp: 0
+  next_Exp: 0
   archerState: 0
 --- !u!1 &1417639156
 GameObject:
@@ -510,7 +538,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
+  playCharacter: 0
+  spState: 0
+  poison_Resist: 0
+  bleeding_Resist: 0
+  defdown_Resist: 0
+  e_shock_Resist: 0
+  stun_Resist: 0
+  addHp: 0
+  addSp: 0
+  addAtk: 0
+  addDef: 0
   playingCharacter: 0
+  monsterList: []
+  exp: 0
+  next_Exp: 0
 --- !u!65 &1417639158
 BoxCollider:
   m_ObjectHideFlags: 0

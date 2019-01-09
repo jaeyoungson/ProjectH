@@ -18,15 +18,18 @@ namespace Global_Define
 
     public enum PlayCharacter
     {
-        Warrior=0,
+        Berserker=0,
         Mage,
-        Archer
+        Archer,
+        Monster,
+        Npc
     }
 
     public enum CharacterState
     {
         Idle=0,
         Move,
+        Run,
         Skill,
         Stiffen,
         Down,

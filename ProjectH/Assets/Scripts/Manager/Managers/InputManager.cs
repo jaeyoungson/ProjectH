@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using Global_Define;
 public class InputManager : ManagerBase<InputManager>
 {
     public GameObject playGameObject;
@@ -192,17 +192,26 @@ public class InputManager : ManagerBase<InputManager>
     #region CharacterChange
     private void BerserkerChange()
     {
-        Debug.Log("Berserker Change");
+        #if UNITY_EDITOR
+            Debug.Log("Berserker Change");
+        #endif
+        BattleManager.Ins.ChangeCharacterJob(PlayCharacter.Berserker);
     }
 
     private void MageChange()
     {
-        Debug.Log("Mage Change");
+        #if UNITY_EDITOR
+            Debug.Log("Mage Change");
+        #endif
+        BattleManager.Ins.ChangeCharacterJob(PlayCharacter.Mage);
     }
 
     private void ArcherChange()
     {
-        Debug.Log("Archer Change");
+        #if UNITY_EDITOR
+            Debug.Log("ArcherChange");
+        #endif
+        BattleManager.Ins.ChangeCharacterJob(PlayCharacter.Archer);
     }
     #endregion
 

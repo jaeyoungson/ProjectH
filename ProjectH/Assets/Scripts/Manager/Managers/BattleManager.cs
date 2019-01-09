@@ -12,20 +12,16 @@ public class BattleManager : ManagerBase<BattleManager>
 
     private new void Awake()
     {
-        curPlayCharacter = playerCharacters[(int)PlayCharacter.Warrior];
+        curPlayCharacter = playerCharacters[(int)PlayCharacter.Berserker];
     }
 
-    public void ChangeCharacterJob()
+    public void ChangeCharacterJob(PlayCharacter nextPlaycharacter)
     {
-        if ((int)jobState < 2)
+        if((int)nextPlaycharacter<3)
         {
-            jobState++;
-            curPlayCharacter = playerCharacters[(int)jobState];
-        }
-        else
-        {
-            curPlayCharacter = playerCharacters[(int)PlayCharacter.Warrior];
-            jobState = PlayCharacter.Warrior;
+            curPlayCharacter = playerCharacters[(int)nextPlaycharacter];
+            InputManager.Ins.playGameObject = curPlayCharacter;
+            InputManager.Ins.curPlayCharacter = InputManager.Ins.playGameObject.GetComponent<PlayableCharacter>();
         }
     }
 }
