@@ -8,11 +8,17 @@ public class Character : MonoBehaviour
     public float moveSpeed;
     public PlayCharacter playCharacter;
     public SpState spState;
-    public float poison_Resist;
-    public float bleeding_Resist;
-    public float defdown_Resist;
-    public float e_shock_Resist;
-    public float stun_Resist;
+
+    protected int poison_Resist;
+    public int curPoison_Resist;
+    protected int bleeding_Resist;
+    public int curBleeding_Resist;
+    protected int defdown_Resist;
+    public int curDefdown_Resist;
+    protected int e_Shock_Resist;
+    public int cur_e_shock_Resist;
+    protected int stun_Resist; 
+    public int curtstun_Resist;
     
     protected int hp;
     public int addHp;
