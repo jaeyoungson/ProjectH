@@ -58,6 +58,13 @@ namespace Global_Define
     {
 
     }
-    
+
+    public enum TargetObject_Type
+    {
+        None=0,
+        PlayableCharacter,
+        Monster,
+    }
+
     #endregion
 }

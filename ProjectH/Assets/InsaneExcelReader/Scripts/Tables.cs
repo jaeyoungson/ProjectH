@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Global_Define;
 
 public class EnemyInfo
 {
@@ -33,6 +34,35 @@ public class ItemInfo
     public void SetName(string Name) { m_Name = Name; }
 }
 
+public class CharacterBehaviorInfo
+{
+    public int index { get; private set; }
+    public string name { get; private set; }
+    public int targetObject_Type { get; private set; }
+    public int behaviorProperties1 { get; private set; }
+    public int behaviorProperties2 { get; private set; }
+    public int value1 { get; private set; }
+    public int value2 { get; private set; }
+    public int behaviorCondition1 { get; private set;}
+    public int behaviorCondition2 { get; private set; }
+    public int behaviorType { get; private set; }
+    public float behaviorRate { get; private set; }
+
+    public void SetIndex(int a_index)                            { index = a_index; }
+    public void SetName(string a_name) { name = a_name; }
+    public void SetTargetObject_Type(int a_targetObject_Type)    { targetObject_Type = a_targetObject_Type; }
+    public void SetBehaviorProperties1(int a_behaviorPropertie1) { behaviorProperties1 = a_behaviorPropertie1; }
+    public void SetBehaviorProperties2(int a_behaviorPropertie2) { behaviorProperties2 = a_behaviorPropertie2; }
+    public void SetValue1(int a_value1)                          { value1 = a_value1; }
+    public void SetValue2(int a_value2)                          { value2 = a_value2; }
+    public void SetBehaviorCondition1(int a_behaviorCondition1)  { behaviorCondition1 = a_behaviorCondition1; }
+    public void SetBehaviorCondition2(int a_behaviorCondition2)  { behaviorCondition2 = a_behaviorCondition2; }
+    public void SetBehaviorType(int a_behaviorType)              { behaviorType = a_behaviorType; }
+    public void SetBehaviorRate(float a_behaviorRate)              { behaviorRate = a_behaviorRate; }
+}
+
+
+
 public class LevelInfo
 {
     public int m_ID { get; private set; }
@@ -59,6 +89,64 @@ public class PlayerInfo
     public void SetBaseHealth(int BaseHealth) { m_BaseHealth = BaseHealth; }
     public void SetBaseAttack(int BaseAttack) { m_BaseAttack = BaseAttack; }
     public void SetBaseDefense(int BaseDefense) { m_BaseDefense = BaseDefense; }
+}
+
+public class CharacterBehaviorInfoTable
+{
+    private static Dictionary<int, CharacterBehaviorInfo> Table = new Dictionary<int, CharacterBehaviorInfo>();
+    public static Dictionary<int , CharacterBehaviorInfo> GetAll()
+    {
+        return Table;
+    }
+    public static CharacterBehaviorInfo GetByKey(int key)
+    {
+        CharacterBehaviorInfo value;
+        if(Table.TryGetValue(key,out value))        
+            return value;
+
+        return null;       
+    }
+    public static CharacterBehaviorInfo GetByIndex(int index)
+    {
+        return Table.Values.ElementAt(index);
+    }
+    public static List<CharacterBehaviorInfo> GetAllList()
+    {
+        return Table.Values.ToList<CharacterBehaviorInfo>();
+    }
+
+    public CharacterBehaviorInfoTable()
+    {
+        InitTable();
+    }
+    
+    private void InitTable()
+    {
+        TextAsset textAsset = Resources.Load("Tables/CharacterBehaviorInfo") as TextAsset;
+        MemoryStream memoryStream = new MemoryStream(textAsset.bytes);
+        BinaryReader binaryReader = new BinaryReader(memoryStream);
+
+        int tableCount = binaryReader.ReadInt32();
+
+        for (int i = 0; i < tableCount; ++i)
+        {
+            int key = binaryReader.ReadInt32();
+            CharacterBehaviorInfo info = new CharacterBehaviorInfo();
+            info.SetIndex(binaryReader.ReadInt32());
+            info.SetName(binaryReader.ReadString());
+            info.SetTargetObject_Type(binaryReader.ReadInt32());
+            info.SetBehaviorProperties1(binaryReader.ReadInt32());
+            info.SetBehaviorProperties2(binaryReader.ReadInt32());
+            info.SetValue1(binaryReader.ReadInt32());
+            info.SetValue2(binaryReader.ReadInt32());
+            info.SetBehaviorCondition1(binaryReader.ReadInt32());
+            info.SetBehaviorCondition2(binaryReader.ReadInt32());
+            info.SetBehaviorType(binaryReader.ReadInt32());
+            info.SetBehaviorRate(binaryReader.ReadSingle());
+            Table.Add(key, info);
+        }
+
+    }
 }
 
 public class EnemyTable
@@ -299,6 +387,7 @@ public class Tables : MonoBehaviour
     public ItemTable Item = null;
     public LevelTable Level = null;
     public PlayerTable Player = null;
+    public CharacterBehaviorInfoTable CharacterBehaviorInfo = null;
 
     private static Tables instance = null;
 

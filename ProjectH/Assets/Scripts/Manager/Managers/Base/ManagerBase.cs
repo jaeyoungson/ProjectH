@@ -9,6 +9,5 @@ public class ManagerBase<T> : SingletonBase<T>
     {
         base.Awake();
         DontDestroyOnLoad(this);
-
     }
 }

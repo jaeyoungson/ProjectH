@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Global_Define;
 
-
 public class Character : MonoBehaviour
 {
     public float moveSpeed;
@@ -18,7 +17,7 @@ public class Character : MonoBehaviour
     public int curDefdown_Resist;
     protected int e_Shock_Resist;
     public int cur_e_shock_Resist;
-    protected int stun_Resist; 
+    protected int stun_Resist;
     public int curtstun_Resist;
     
     protected int hp;
