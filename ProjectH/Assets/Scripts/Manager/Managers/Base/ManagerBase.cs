@@ -7,7 +7,8 @@ public class ManagerBase<T> : SingletonBase<T>
 {
     protected new void Awake()
     {
-        DontDestroyOnLoad(this);
         base.Awake();
+        DontDestroyOnLoad(this);
+
     }
 }

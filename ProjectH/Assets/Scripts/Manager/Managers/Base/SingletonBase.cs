@@ -13,7 +13,7 @@ public class SingletonBase<T> : MonoBehaviour
         {
             if(instance ==null)
             {
-                instance = FindObjectOfType<T>();
+                instance = FindObjectOfType<T>();                
             }
 
             return instance;
@@ -22,7 +22,11 @@ public class SingletonBase<T> : MonoBehaviour
 
     protected void Awake()
     {
-        if (instance != this)
+        if(instance ==null)
+        {
+            instance = (T)this;
+        }
+        else if (instance != gameObject)
         {
             Destroy(gameObject);
         }

@@ -35,7 +35,6 @@ namespace Global_Define
         Down,
         WakeUp,
         Recovery,
-
     }
 
     public enum SpState//슈퍼아머나 무적상태 값

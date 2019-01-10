@@ -288,11 +288,11 @@ MonoBehaviour:
   moveSpeed: 3
   playCharacter: 0
   spState: 0
-  poison_Resist: 0
-  bleeding_Resist: 0
-  defdown_Resist: 0
-  e_shock_Resist: 0
-  stun_Resist: 0
+  curPoison_Resist: 0
+  curBleeding_Resist: 0
+  curDefdown_Resist: 0
+  cur_e_shock_Resist: 0
+  curtstun_Resist: 0
   addHp: 0
   addSp: 0
   addAtk: 0
@@ -491,11 +491,11 @@ MonoBehaviour:
   moveSpeed: 3
   playCharacter: 0
   spState: 0
-  poison_Resist: 0
-  bleeding_Resist: 0
-  defdown_Resist: 0
-  e_shock_Resist: 0
-  stun_Resist: 0
+  curPoison_Resist: 0
+  curBleeding_Resist: 0
+  curDefdown_Resist: 0
+  cur_e_shock_Resist: 0
+  curtstun_Resist: 0
   addHp: 0
   addSp: 0
   addAtk: 0
@@ -505,6 +505,49 @@ MonoBehaviour:
   exp: 0
   next_Exp: 0
   archerState: 0
+--- !u!1 &1408528787
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1408528789}
+  - component: {fileID: 1408528788}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1408528788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408528787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f80e7449d7122eb45b6d8145d825bfba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1408528789
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408528787}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.9330641, y: -1.4485015, z: -8.162911}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1417639156
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,11 +583,11 @@ MonoBehaviour:
   moveSpeed: 3
   playCharacter: 0
   spState: 0
-  poison_Resist: 0
-  bleeding_Resist: 0
-  defdown_Resist: 0
-  e_shock_Resist: 0
-  stun_Resist: 0
+  curPoison_Resist: 0
+  curBleeding_Resist: 0
+  curDefdown_Resist: 0
+  cur_e_shock_Resist: 0
+  curtstun_Resist: 0
   addHp: 0
   addSp: 0
   addAtk: 0
@@ -619,7 +662,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1417639156}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.46, y: 0, z: -0.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1690269516}
@@ -636,7 +679,7 @@ GameObject:
   - component: {fileID: 1521002972}
   - component: {fileID: 1521002971}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: InputManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

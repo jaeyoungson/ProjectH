@@ -6,7 +6,7 @@ public class GameManager : ManagerBase<GameManager>
 {
     private new void Awake()
     {
-        
+        base.Awake();
     }
 
     private void Start()

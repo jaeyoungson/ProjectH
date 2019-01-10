@@ -12,6 +12,7 @@ public class BattleManager : ManagerBase<BattleManager>
 
     private new void Awake()
     {
+        base.Awake();
         curPlayCharacter = playerCharacters[(int)PlayCharacter.Berserker];
     }
 

@@ -29,10 +29,10 @@ public class InputManager : ManagerBase<InputManager>
     private KeyCode map;//default M
     #endregion
 
-    private new void Awake()
+    private void Awake()
     {
+        base.Awake();
         //키코드 변수에 PlayerPrefs에 있는 커스텀된 string 값을 가져와서 그 코드로변경 없다면 디폴트 값으로 가져옴
-
         #region moveKey
         forward = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("forward", "W"));
         backward = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("backward", "S"));
