@@ -8,7 +8,9 @@ public class Character : MonoBehaviour
     public float moveSpeed;
     public PlayCharacter playCharacter;
     public SpState spState;
-
+    public CharacterTargetType targetType;
+    public int addList;
+    public float targetRange;
     protected int poison_Resist;
     public int curPoison_Resist;
     protected int bleeding_Resist;

@@ -14,6 +14,7 @@ public class DisplayTables : MonoBehaviour
     bool canShowItem = false;
     bool canShowLevel = false;
     bool canShowPlayer = false;
+    bool canShowSheet1 = false;
 
     void Init()
     {
@@ -21,6 +22,7 @@ public class DisplayTables : MonoBehaviour
         canShowItem = false;
         canShowLevel = false;
         canShowPlayer = false;
+        canShowSheet1 = false;
     }
 
     void Start ()
@@ -114,6 +116,27 @@ public class DisplayTables : MonoBehaviour
         foreach (var item in PlayerList)
             Debug.Log(string.Format("m_ID = {0},m_Name = {1},m_BaseHealth = {2},m_BaseAttack = {3},m_BaseDefense = {4}," ,item.m_ID ,item.m_Name ,item.m_BaseHealth ,item.m_BaseAttack ,item.m_BaseDefense));
 
+        var Sheet1All = Sheet1Table.GetAll();
+        var Sheet1Index = Sheet1Table.GetByIndex(0);
+        var Sheet1Key = Sheet1Table.GetByKey(1601);
+        var Sheet1List = Sheet1Table.GetAllList();
+
+        Debug.Log(" < ---Sheet1Table Dictionary --->");
+
+        foreach (var item in Sheet1All)
+            Debug.Log(string.Format("Key = {0}, m_name = {1},m_targetObject_Type = {2},m_behaviorProperties1 = {3},m_behaviorProperties2 = {4},m_value1 = {5},m_value2 = {6},m_behaviorCondition1 = {7},m_behaviorCondition2 = {8},m_behaviorType = {9},m_behaviorRate = {10},", item.Key ,item.Value.m_name ,item.Value.m_targetObject_Type ,item.Value.m_behaviorProperties1 ,item.Value.m_behaviorProperties2 ,item.Value.m_value1 ,item.Value.m_value2 ,item.Value.m_behaviorCondition1 ,item.Value.m_behaviorCondition2 ,item.Value.m_behaviorType ,item.Value.m_behaviorRate));
+
+        Debug.Log(" < ---Sheet1Table Dictionary Index --->");
+        Debug.Log(string.Format("m_name = {0},m_targetObject_Type = {1},m_behaviorProperties1 = {2},m_behaviorProperties2 = {3},m_value1 = {4},m_value2 = {5},m_behaviorCondition1 = {6},m_behaviorCondition2 = {7},m_behaviorType = {8},m_behaviorRate = {9}," ,Sheet1Index.m_name ,Sheet1Index.m_targetObject_Type ,Sheet1Index.m_behaviorProperties1 ,Sheet1Index.m_behaviorProperties2 ,Sheet1Index.m_value1 ,Sheet1Index.m_value2 ,Sheet1Index.m_behaviorCondition1 ,Sheet1Index.m_behaviorCondition2 ,Sheet1Index.m_behaviorType ,Sheet1Index.m_behaviorRate));
+
+        Debug.Log(" < ---Sheet1Table Dictionary Key --->");
+        Debug.Log(string.Format("m_name = {0},m_targetObject_Type = {1},m_behaviorProperties1 = {2},m_behaviorProperties2 = {3},m_value1 = {4},m_value2 = {5},m_behaviorCondition1 = {6},m_behaviorCondition2 = {7},m_behaviorType = {8},m_behaviorRate = {9}," ,Sheet1Key.m_name ,Sheet1Key.m_targetObject_Type ,Sheet1Key.m_behaviorProperties1 ,Sheet1Key.m_behaviorProperties2 ,Sheet1Key.m_value1 ,Sheet1Key.m_value2 ,Sheet1Key.m_behaviorCondition1 ,Sheet1Key.m_behaviorCondition2 ,Sheet1Key.m_behaviorType ,Sheet1Key.m_behaviorRate));
+
+        Debug.Log(" < ---Sheet1Table List --->");
+
+        foreach (var item in Sheet1List)
+            Debug.Log(string.Format("m_name = {0},m_targetObject_Type = {1},m_behaviorProperties1 = {2},m_behaviorProperties2 = {3},m_value1 = {4},m_value2 = {5},m_behaviorCondition1 = {6},m_behaviorCondition2 = {7},m_behaviorType = {8},m_behaviorRate = {9}," ,item.m_name ,item.m_targetObject_Type ,item.m_behaviorProperties1 ,item.m_behaviorProperties2 ,item.m_value1 ,item.m_value2 ,item.m_behaviorCondition1 ,item.m_behaviorCondition2 ,item.m_behaviorType ,item.m_behaviorRate));
+
     }
 
     void OnGUI()
@@ -146,6 +169,12 @@ public class DisplayTables : MonoBehaviour
                     {
                         Init();
                         canShowPlayer = true;
+                    }
+
+                    if (GUILayout.Button("Sheet1", GUILayout.Width(200), GUILayout.Height(30)))
+                    {
+                        Init();
+                        canShowSheet1 = true;
                     }
 
                 }
@@ -274,6 +303,44 @@ public class DisplayTables : MonoBehaviour
                                     GUILayout.TextField("BaseHealth: " + info.Value.m_BaseHealth.ToString(), GUI.skin.box, GUILayout.Width(150), GUILayout.Height(30));
                                     GUILayout.TextField("BaseAttack: " + info.Value.m_BaseAttack.ToString(), GUI.skin.box, GUILayout.Width(150), GUILayout.Height(30));
                                     GUILayout.TextField("BaseDefense: " + info.Value.m_BaseDefense.ToString(), GUI.skin.box, GUILayout.Width(150), GUILayout.Height(30));
+                                }
+                                GUILayout.EndHorizontal();
+                            }
+                        }
+                        GUILayout.EndVertical();
+                    }
+                    GUILayout.EndScrollView();
+                }
+            }
+            GUILayout.EndArea();
+        }
+
+        if (canShowSheet1)
+        {
+            GUILayout.BeginArea(m_rectTable, GUI.skin.box);
+            {
+                if (Sheet1Table.GetAll().Count > 0)
+                {
+                    m_scrollPosTable = GUILayout.BeginScrollView(m_scrollPosTable, true, true);
+                    {
+                        GUILayout.BeginVertical(GUI.skin.box);
+                        {
+                            foreach (var info in Sheet1Table.GetAll())
+                            {
+                                GUILayout.BeginHorizontal(GUI.skin.box);
+                                {
+                                    GUILayout.TextField("Key: " + info.Key.ToString(), GUI.skin.box, GUILayout.Width(200), GUILayout.Height(30));
+                                    GUILayout.TextField("", GUI.skin.box, GUILayout.Width(30), GUILayout.Height(30));
+                                    GUILayout.TextField("name: " + info.Value.m_name.ToString(), GUI.skin.box, GUILayout.Width(150), GUILayout.Height(30));
+                                    GUILayout.TextField("targetObject_Type: " + info.Value.m_targetObject_Type.ToString(), GUI.skin.box, GUILayout.Width(150), GUILayout.Height(30));
+                                    GUILayout.TextField("behaviorProperties1: " + info.Value.m_behaviorProperties1.ToString(), GUI.skin.box, GUILayout.Width(150), GUILayout.Height(30));
+                                    GUILayout.TextField("behaviorProperties2: " + info.Value.m_behaviorProperties2.ToString(), GUI.skin.box, GUILayout.Width(150), GUILayout.Height(30));
+                                    GUILayout.TextField("value1: " + info.Value.m_value1.ToString(), GUI.skin.box, GUILayout.Width(150), GUILayout.Height(30));
+                                    GUILayout.TextField("value2: " + info.Value.m_value2.ToString(), GUI.skin.box, GUILayout.Width(150), GUILayout.Height(30));
+                                    GUILayout.TextField("behaviorCondition1: " + info.Value.m_behaviorCondition1.ToString(), GUI.skin.box, GUILayout.Width(150), GUILayout.Height(30));
+                                    GUILayout.TextField("behaviorCondition2: " + info.Value.m_behaviorCondition2.ToString(), GUI.skin.box, GUILayout.Width(150), GUILayout.Height(30));
+                                    GUILayout.TextField("behaviorType: " + info.Value.m_behaviorType.ToString(), GUI.skin.box, GUILayout.Width(150), GUILayout.Height(30));
+                                    GUILayout.TextField("behaviorRate: " + info.Value.m_behaviorRate.ToString(), GUI.skin.box, GUILayout.Width(150), GUILayout.Height(30));
                                 }
                                 GUILayout.EndHorizontal();
                             }

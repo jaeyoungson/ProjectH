@@ -3,16 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Skill : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
+{    
+
+    public static void ActiveSkill(int index)
     {
-        
+        switch (index)
+        {
+            default:
+                break;
+            //인덱스에 따라서 스킬을 구현함
+            //스킬쓰는 도중에 자신의 스테이트 변경
+        }
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public static void PassiveSkill(int index)
     {
-        
+
     }
+    public virtual void SkillImplementation() { }
 }
