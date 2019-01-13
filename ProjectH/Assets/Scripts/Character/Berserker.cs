@@ -57,7 +57,7 @@ public class Berserker : PlayableCharacter
         //    for(int j=0;i<battleManager.Ins.monsterList.Count;i++
         //      {
         //          Character monster = battleManager.Ins.monsterList[j].GetComponent<Character>();
-        //          SkillSelector(i,monster);/
+        //          SkillSelector(i,monster);
         //      }
         //}
     }
