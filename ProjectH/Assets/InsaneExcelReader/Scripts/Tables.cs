@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Global_Define;
 
 public class EnemyInfo
 {
@@ -33,6 +34,35 @@ public class ItemInfo
     public void SetName(string Name) { m_Name = Name; }
 }
 
+public class CharacterBehaviorInfo
+{
+    public int index { get; private set; }
+    public string name { get; private set; }
+    public int targetObject_Type { get; private set; }
+    public int behaviorProperties1 { get; private set; }
+    public int behaviorProperties2 { get; private set; }
+    public int value1 { get; private set; }
+    public int value2 { get; private set; }
+    public int behaviorCondition1 { get; private set;}
+    public int behaviorCondition2 { get; private set; }
+    public int behaviorType { get; private set; }
+    public float behaviorRate { get; private set; }
+
+    public void SetIndex(int a_index)                            { index = a_index; }
+    public void SetName(string a_name) { name = a_name; }
+    public void SetTargetObject_Type(int a_targetObject_Type)    { targetObject_Type = a_targetObject_Type; }
+    public void SetBehaviorProperties1(int a_behaviorPropertie1) { behaviorProperties1 = a_behaviorPropertie1; }
+    public void SetBehaviorProperties2(int a_behaviorPropertie2) { behaviorProperties2 = a_behaviorPropertie2; }
+    public void SetValue1(int a_value1)                          { value1 = a_value1; }
+    public void SetValue2(int a_value2)                          { value2 = a_value2; }
+    public void SetBehaviorCondition1(int a_behaviorCondition1)  { behaviorCondition1 = a_behaviorCondition1; }
+    public void SetBehaviorCondition2(int a_behaviorCondition2)  { behaviorCondition2 = a_behaviorCondition2; }
+    public void SetBehaviorType(int a_behaviorType)              { behaviorType = a_behaviorType; }
+    public void SetBehaviorRate(float a_behaviorRate)              { behaviorRate = a_behaviorRate; }
+}
+
+
+
 public class LevelInfo
 {
     public int m_ID { get; private set; }
@@ -61,29 +91,62 @@ public class PlayerInfo
     public void SetBaseDefense(int BaseDefense) { m_BaseDefense = BaseDefense; }
 }
 
-public class Sheet1Info
+public class CharacterBehaviorInfoTable
 {
-    public string m_name { get; private set; }
-    public int m_targetObject_Type { get; private set; }
-    public int m_behaviorProperties1 { get; private set; }
-    public int m_behaviorProperties2 { get; private set; }
-    public int m_value1 { get; private set; }
-    public int m_value2 { get; private set; }
-    public int m_behaviorCondition1 { get; private set; }
-    public int m_behaviorCondition2 { get; private set; }
-    public int m_behaviorType { get; private set; }
-    public float m_behaviorRate { get; private set; }
+    private static Dictionary<int, CharacterBehaviorInfo> Table = new Dictionary<int, CharacterBehaviorInfo>();
+    public static Dictionary<int , CharacterBehaviorInfo> GetAll()
+    {
+        return Table;
+    }
+    public static CharacterBehaviorInfo GetByKey(int key)
+    {
+        CharacterBehaviorInfo value;
+        if(Table.TryGetValue(key,out value))        
+            return value;
 
-    public void Setname(string name) { m_name = name; }
-    public void SettargetObject_Type(int targetObject_Type) { m_targetObject_Type = targetObject_Type; }
-    public void SetbehaviorProperties1(int behaviorProperties1) { m_behaviorProperties1 = behaviorProperties1; }
-    public void SetbehaviorProperties2(int behaviorProperties2) { m_behaviorProperties2 = behaviorProperties2; }
-    public void Setvalue1(int value1) { m_value1 = value1; }
-    public void Setvalue2(int value2) { m_value2 = value2; }
-    public void SetbehaviorCondition1(int behaviorCondition1) { m_behaviorCondition1 = behaviorCondition1; }
-    public void SetbehaviorCondition2(int behaviorCondition2) { m_behaviorCondition2 = behaviorCondition2; }
-    public void SetbehaviorType(int behaviorType) { m_behaviorType = behaviorType; }
-    public void SetbehaviorRate(float behaviorRate) { m_behaviorRate = behaviorRate; }
+        return null;       
+    }
+    public static CharacterBehaviorInfo GetByIndex(int index)
+    {
+        return Table.Values.ElementAt(index);
+    }
+    public static List<CharacterBehaviorInfo> GetAllList()
+    {
+        return Table.Values.ToList<CharacterBehaviorInfo>();
+    }
+
+    public CharacterBehaviorInfoTable()
+    {
+        InitTable();
+    }
+    
+    private void InitTable()
+    {
+        TextAsset textAsset = Resources.Load("Tables/CharacterBehaviorInfo") as TextAsset;
+        MemoryStream memoryStream = new MemoryStream(textAsset.bytes);
+        BinaryReader binaryReader = new BinaryReader(memoryStream);
+
+        int tableCount = binaryReader.ReadInt32();
+
+        for (int i = 0; i < tableCount; ++i)
+        {
+            int key = binaryReader.ReadInt32();
+            CharacterBehaviorInfo info = new CharacterBehaviorInfo();
+            info.SetIndex(binaryReader.ReadInt32());
+            info.SetName(binaryReader.ReadString());
+            info.SetTargetObject_Type(binaryReader.ReadInt32());
+            info.SetBehaviorProperties1(binaryReader.ReadInt32());
+            info.SetBehaviorProperties2(binaryReader.ReadInt32());
+            info.SetValue1(binaryReader.ReadInt32());
+            info.SetValue2(binaryReader.ReadInt32());
+            info.SetBehaviorCondition1(binaryReader.ReadInt32());
+            info.SetBehaviorCondition2(binaryReader.ReadInt32());
+            info.SetBehaviorType(binaryReader.ReadInt32());
+            info.SetBehaviorRate(binaryReader.ReadSingle());
+            Table.Add(key, info);
+        }
+
+    }
 }
 
 public class EnemyTable
@@ -317,69 +380,6 @@ public class PlayerTable
     }
 }
 
-public class Sheet1Table
-{
-    private static Dictionary<int, Sheet1Info> Table = new Dictionary<int, Sheet1Info>();
-
-    public static Dictionary<int, Sheet1Info> GetAll()
-    {
-        return Table;
-    }
-
-    public static Sheet1Info GetByKey(int key)
-    {
-        Sheet1Info value;
-
-        if (Table.TryGetValue(key, out value))
-            return value;
-
-        return null;
-    }
-
-    public static Sheet1Info GetByIndex(int index)
-    {
-        return Table.Values.ElementAt(index);
-    }
-
-    public static List<Sheet1Info> GetAllList()
-    {
-        return Table.Values.ToList();
-    }
-
-    public Sheet1Table()
-    {
-        InitTable();
-    }
-
-    private void InitTable()
-    {
-        TextAsset textAsset = Resources.Load("Tables/Sheet1") as TextAsset;
-        MemoryStream memoryStream = new MemoryStream(textAsset.bytes);
-        BinaryReader binaryReader = new BinaryReader(memoryStream);
-
-        int tableCount = binaryReader.ReadInt32();
-
-        for( int i = 0; i < tableCount; ++i)
-        {
-            int key = binaryReader.ReadInt32();
-
-            Sheet1Info info = new Sheet1Info();
-            info.Setname(binaryReader.ReadString());
-            info.SettargetObject_Type(binaryReader.ReadInt32());
-            info.SetbehaviorProperties1(binaryReader.ReadInt32());
-            info.SetbehaviorProperties2(binaryReader.ReadInt32());
-            info.Setvalue1(binaryReader.ReadInt32());
-            info.Setvalue2(binaryReader.ReadInt32());
-            info.SetbehaviorCondition1(binaryReader.ReadInt32());
-            info.SetbehaviorCondition2(binaryReader.ReadInt32());
-            info.SetbehaviorType(binaryReader.ReadInt32());
-            info.SetbehaviorRate(binaryReader.ReadSingle());
-
-            Table.Add(key, info);
-        }
-    }
-}
-
 
 public class Tables : MonoBehaviour
 {
@@ -387,7 +387,7 @@ public class Tables : MonoBehaviour
     public ItemTable Item = null;
     public LevelTable Level = null;
     public PlayerTable Player = null;
-    public Sheet1Table Sheet1 = null;
+    public CharacterBehaviorInfoTable CharacterBehaviorInfo = null;
 
     private static Tables instance = null;
 
@@ -401,11 +401,11 @@ public class Tables : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+
             Enemy = new EnemyTable();
             Item = new ItemTable();
             Level = new LevelTable();
             Player = new PlayerTable();
-            Sheet1 = new Sheet1Table();
         }
         else if (instance != this)
         {
@@ -413,6 +413,10 @@ public class Tables : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+    }
+
+    void Start()
+    {
     }
 }
 
