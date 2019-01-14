@@ -24,6 +24,13 @@ namespace Global_Define
         Monster,
         Npc
     }
+    public enum CharacterTargetType
+    {
+        None = 0,
+        Playable,
+        Monster,
+    }
+
 
     public enum CharacterState
     {
@@ -31,6 +38,7 @@ namespace Global_Define
         Move,
         Run,
         Skill,
+        Skilling,
         Stiffen,
         Down,
         WakeUp,

@@ -29,9 +29,6 @@ public class InputManager : ManagerBase<InputManager>
     private KeyCode map;//default M
     #endregion
 
-    private float turnMouse_X = 0.0f;
-    public float X_axisRotateSpeed = 100.0f;
-
     private void Awake()
     {
         base.Awake();
@@ -164,9 +161,6 @@ public class InputManager : ManagerBase<InputManager>
         }
         #endregion
 
-        TurnMouse();
-
-
     }
     #region movefuction
     private void ForwardMove()
@@ -192,12 +186,6 @@ public class InputManager : ManagerBase<InputManager>
     private void Run()
     {
         Debug.Log("run");
-    }
-
-    private void TurnMouse()
-    {
-        turnMouse_X = Input.GetAxis("Mouse X");
-        playGameObject.transform.Rotate(Vector3.up, X_axisRotateSpeed * Time.deltaTime * turnMouse_X);
     }
     #endregion
 

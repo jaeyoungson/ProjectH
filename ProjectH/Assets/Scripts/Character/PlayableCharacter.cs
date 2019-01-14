@@ -7,7 +7,8 @@ public class PlayableCharacter : Character
 {
     public bool playingCharacter;   //true 플레이중 false nonplay
     public List<Character> monsterList;
-    private CharacterState state;
+    private CharacterState state =default;
+    
     public int exp;
     public int next_Exp;
     // Update is called once per frame
