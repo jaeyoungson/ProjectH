@@ -45,6 +45,18 @@ namespace Global_Define
         Recovery,
     }
 
+    public enum AbnormalConditionState
+    {
+        None = 0,
+        Poison =1,
+        Bleeding,
+        E_Shock,
+        Stun,
+        SuperArmor,
+        Invincible,
+    }
+
+
     public enum SpState//슈퍼아머나 무적상태 값
     {
         None =0,

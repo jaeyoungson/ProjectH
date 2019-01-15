@@ -7,20 +7,9 @@ public class Character : MonoBehaviour
 {
     public float moveSpeed;
     public PlayCharacter playCharacter;
-    public SpState spState;
     public CharacterTargetType targetType;
-    public int addList;
     public float targetRange;
-    protected int poison_Resist;
-    public int curPoison_Resist;
-    protected int bleeding_Resist;
-    public int curBleeding_Resist;
-    protected int defdown_Resist;
-    public int curDefdown_Resist;
-    protected int e_Shock_Resist;
-    public int cur_e_shock_Resist;
-    protected int stun_Resist;
-    public int curtstun_Resist;
+    public Dictionary<AbnormalConditionState, AbnormalCondition> conditions;
     
     protected int hp;
     public int addHp;
@@ -31,11 +20,35 @@ public class Character : MonoBehaviour
     protected int def;
     public int addDef;
 
+    protected void Awake()
+    {
+        
+    }
+
     #region get
 
+    //index로 condition클래스를 가져다줌
+    public AbnormalCondition GetConditionToIndex(int conditionIndex)
+    {
+        if(conditions.ContainsKey((AbnormalConditionState)conditionIndex))
+        {
+            return conditions[(AbnormalConditionState)conditionIndex];
+        }
+        else
+        {
+        #if UNITY_EDITOR
+            Debug.Log("have not conditionIndex");
+        #endif
+        }
+        return default;
+    }
+    protected void SettingCondition()
+    {
+
+    }
     #endregion
 
-    #region set
+#region set
 
-    #endregion
+#endregion
 } 

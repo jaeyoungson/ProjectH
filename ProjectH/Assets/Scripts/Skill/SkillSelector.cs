@@ -24,7 +24,6 @@ public class SkillSelector : MonoBehaviour
 
     private void CheckBehaviorPropertyOne(Sheet1Info tableInfo,Character target)
     {
-
         switch (tableInfo.m_behaviorProperties1)
         {
             default:                
@@ -59,8 +58,7 @@ public class SkillSelector : MonoBehaviour
                 break;
             case 2:
                 break;
-            case 3:
-                
+            case 3:                
                 break;
             case 4://거리비교
                 TargetCheckRange(tableInfo, target);
@@ -82,10 +80,6 @@ public class SkillSelector : MonoBehaviour
             default:
                 break;
             case 0:
-                if (target.addList == tableInfo.m_value1)
-                {
-                    CheckBehaviorPropertyTwo(tableInfo, target);
-                }
                 break;
             case 1:
 
@@ -123,8 +117,6 @@ public class SkillSelector : MonoBehaviour
             case 5:
                 break;
         }
-
     }
     #endregion
-
 }

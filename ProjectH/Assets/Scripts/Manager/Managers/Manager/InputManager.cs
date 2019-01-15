@@ -25,7 +25,7 @@ public class InputManager : ManagerBase<InputManager>
     private KeyCode evasionSkill;//default Space
 
     private KeyCode equip;//default p
-    private KeyCode inventory;//default Tab    
+    private KeyCode inventory;//default Tab
     private KeyCode map;//default M
     #endregion
 
@@ -111,6 +111,7 @@ public class InputManager : ManagerBase<InputManager>
         {
             MageChange();
         }
+
         if(Input.GetKeyDown(archer))
         {
             ArcherChange();
@@ -163,7 +164,6 @@ public class InputManager : ManagerBase<InputManager>
             MapOpen();
         }
         #endregion
-
         TurnMouse();
 
     }

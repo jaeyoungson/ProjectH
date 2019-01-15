@@ -24,8 +24,7 @@ public class PlayableCharacter : Character
                     break;
                 case CharacterState.Move:
                     break;
-                case CharacterState.Skill:
-                    
+                case CharacterState.Skill:   
                     break;
                 case CharacterState.Stiffen:
                     break;
@@ -44,6 +43,7 @@ public class PlayableCharacter : Character
     protected virtual void Idle() { }
     protected virtual void Move() { }
     #endregion
+
     #region public virtual
     public virtual void SkillNumberOne()   { }
     public virtual void SkillNumberTwo()   { }

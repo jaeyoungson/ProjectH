@@ -44,7 +44,6 @@ public class Berserker : PlayableCharacter
                 default:
                     break;
             }
-
         }
     }
 
@@ -59,12 +58,7 @@ public class Berserker : PlayableCharacter
         //          Character monster = battleManager.Ins.monsterList[j].GetComponent<Character>();
         //          SkillSelector(i,monster);
         //      }
-        //}
+        //+우리케릭터
+        //        
     }
-
-
-    
-
-
-
 }
