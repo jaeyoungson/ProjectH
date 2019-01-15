@@ -61,19 +61,18 @@ public class Character : MonoBehaviour
         }
         return temp;
     }
+    #endregion
     protected void SettingCondition()
     {
         var index = System.Enum.GetNames(typeof(AbnormalConditionState));
-        foreach(var state in index)
+        foreach (var state in index)
         {
             AbnormalConditionState conditionName = (AbnormalConditionState)System.Enum.Parse(typeof(AbnormalConditionState), state);
             AbnormalCondition condition = new AbnormalCondition(conditionName);
-            conditions.Add(conditionName,condition);
-        }            
+            conditions.Add(conditionName, condition);
+        }
     }
+    #region set
+
     #endregion
-
-#region set
-
-#endregion
 } 

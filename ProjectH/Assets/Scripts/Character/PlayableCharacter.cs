@@ -45,6 +45,7 @@ public class PlayableCharacter : Character
     #endregion
 
     #region public virtual
+    public virtual void NormalSkill()      { }
     public virtual void SkillNumberOne()   { }
     public virtual void SkillNumberTwo()   { }
     public virtual void SkillNumberThree() { }
