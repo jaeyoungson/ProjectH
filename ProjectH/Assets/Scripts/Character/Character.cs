@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Global_Define;
+using System;
 
 public class Character : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class Character : MonoBehaviour
     public PlayCharacter playCharacter;
     public CharacterTargetType targetType;
     public float targetRange;
-    public Dictionary<AbnormalConditionState, AbnormalCondition> conditions;
+    public Dictionary<AbnormalConditionState, AbnormalCondition> conditions = new Dictionary<AbnormalConditionState, AbnormalCondition>();
     
     protected int hp;
     public int addHp;
@@ -22,17 +23,19 @@ public class Character : MonoBehaviour
 
     protected void Awake()
     {
-        
+        SettingCondition();
     }
+
 
     #region get
 
     //index로 condition클래스를 가져다줌
     public AbnormalCondition GetConditionToIndex(int conditionIndex)
     {
+        AbnormalCondition temp = new AbnormalCondition();
         if(conditions.ContainsKey((AbnormalConditionState)conditionIndex))
         {
-            return conditions[(AbnormalConditionState)conditionIndex];
+            temp = conditions[(AbnormalConditionState)conditionIndex];
         }
         else
         {
@@ -40,11 +43,33 @@ public class Character : MonoBehaviour
             Debug.Log("have not conditionIndex");
         #endif
         }
-        return default;
+        return temp;
+    }
+    //string으로 condition클래스를 가져다줌
+    public AbnormalCondition GetConditionToString(string conditionName)
+    {
+        AbnormalCondition temp = new AbnormalCondition();
+        if (conditions.ContainsKey((AbnormalConditionState)System.Enum.Parse(typeof(AbnormalConditionState),conditionName)))
+        {
+            temp= conditions[(AbnormalConditionState)System.Enum.Parse(typeof(AbnormalConditionState), conditionName)];
+        }
+        else
+        {
+        #if UNITY_EDITOR
+            Debug.Log("have not conditionString");
+        #endif
+        }
+        return temp;
     }
     protected void SettingCondition()
     {
-
+        var index = System.Enum.GetNames(typeof(AbnormalConditionState));
+        foreach(var state in index)
+        {
+            AbnormalConditionState conditionName = (AbnormalConditionState)System.Enum.Parse(typeof(AbnormalConditionState), state);
+            AbnormalCondition condition = new AbnormalCondition(conditionName);
+            conditions.Add(conditionName,condition);
+        }            
     }
     #endregion
 

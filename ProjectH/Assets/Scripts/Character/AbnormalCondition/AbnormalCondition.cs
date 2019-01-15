@@ -6,9 +6,13 @@ using Global_Define;
 [System.Serializable]
 public class AbnormalCondition
 {
-    public AbnormalCondition(int index)
+    public AbnormalCondition()
     {
-        condition = (AbnormalConditionState)index;
+
+    }
+    public AbnormalCondition(AbnormalConditionState index)
+    {
+        condition = index;
     }
     public bool conditionActivate;
     public AbnormalConditionState condition { get; private set; }
@@ -29,4 +33,12 @@ public class AbnormalCondition
         duration = durationTime;
     }
     #endregion
+
+    //상태이상 켬
+    public IEnumerator ActiveCondition()
+    {
+        conditionActivate = true;
+        yield return new WaitForSeconds(duration);
+        conditionActivate = false;
+    }
 }
