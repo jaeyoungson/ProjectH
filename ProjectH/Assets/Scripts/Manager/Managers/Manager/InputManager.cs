@@ -23,6 +23,7 @@ public class InputManager : ManagerBase<InputManager>
     private KeyCode cooperationSkill;//default BackQuote(`)
     private KeyCode ultimateSkill;//default V
     private KeyCode evasionSkill;//default Space
+    public KeyCode normalAttack;//default Mouse0(mouse leftClick)
 
     private KeyCode equip;//default p
     private KeyCode inventory;//default Tab
@@ -51,6 +52,7 @@ public class InputManager : ManagerBase<InputManager>
         #endregion
 
         #region skill
+        normalAttack = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("normalAttack", "Mouse0"));
         skillNumber1 = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("skillNumber1", "Alpha1"));
         skillNumber2 = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("skillNumber2", "Alpha2"));
         skillNumber3 = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("skillNumber3", "Alpha3"));
@@ -118,10 +120,13 @@ public class InputManager : ManagerBase<InputManager>
         }
         #endregion
         #region Skill
+
         if (Input.GetKeyDown(skillNumber1))
         {
             SkillNumberOne();
         }
+
+
 
         if(Input.GetKeyDown(skillNumber2))
         {
@@ -147,9 +152,22 @@ public class InputManager : ManagerBase<InputManager>
         {
             EvastionSkill();
         }
+
+        if(Input.GetKeyDown(normalAttack))
+        {
+            NormalSkill();
+        }
+        if (Input.GetKeyUp(normalAttack))
+        {
+            NormalSkill();
+        }
+        if(Input.GetKey(normalAttack))
+        {
+            NormalSkill();
+        }
         #endregion
         #region utilkey
-        if(Input.GetKeyDown(equip))
+        if (Input.GetKeyDown(equip))
         {
             EquipOpen();
         }
@@ -227,9 +245,13 @@ public class InputManager : ManagerBase<InputManager>
     #endregion
 
     #region Skill Fuction
+    private void NormalSkill()
+    {
+        BattleManager.Ins.curPlayCharacter.GetComponent<PlayableCharacter>().NormalSkill();
+    }
     private void SkillNumberOne()
     {
-        Debug.Log("SkillNumberOne");
+        Debug.Log("SKillNumberOne");
     }
 
     private void SkillNumberTwo()
