@@ -61,4 +61,12 @@ public class Berserker : PlayableCharacter
         //+우리케릭터
         //        
     }
+
+    public override void NormalSkill()
+    {
+
+        //평타구현
+
+        base.NormalSkill();
+    }
 }
