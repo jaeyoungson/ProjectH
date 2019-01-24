@@ -30,7 +30,7 @@ public class Berserker : PlayableCharacter
                     break;
                 case CharacterState.Run:
                     break;
-                case CharacterState.Skill:
+                case CharacterState.Battle:
                     BerserkerStateSkill();
                     break;
                 case CharacterState.Stiffen:

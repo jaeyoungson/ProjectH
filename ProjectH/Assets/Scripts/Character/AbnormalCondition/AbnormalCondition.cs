@@ -40,5 +40,5 @@ public class AbnormalCondition
         conditionActivate = true;
         yield return new WaitForSeconds(duration);
         conditionActivate = false;
-    }
+    }   
 }

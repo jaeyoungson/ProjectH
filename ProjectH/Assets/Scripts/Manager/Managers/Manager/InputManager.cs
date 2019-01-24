@@ -152,18 +152,19 @@ public class InputManager : ManagerBase<InputManager>
         {
             EvastionSkill();
         }
-
+        
         if(Input.GetKeyDown(normalAttack))
         {
             NormalSkill();
         }
-        if (Input.GetKeyUp(normalAttack))
+
+        if(Input.GetKeyUp(normalAttack))
         {
-            NormalSkill();
-        }
-        if(Input.GetKey(normalAttack))
-        {
-            NormalSkill();
+            Character character = BattleManager.Ins.curPlayCharacter.GetComponent<Character>();
+            if (character.playCharacter == PlayCharacter.Archer)
+            {
+                NormalSkill();
+            }
         }
         #endregion
         #region utilkey

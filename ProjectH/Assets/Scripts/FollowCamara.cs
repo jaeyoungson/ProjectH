@@ -20,8 +20,7 @@ public class FollowCamara : MonoBehaviour
         rigTransform = transform;
     }
 
-    // Update is called once per frame
-    void LateUpdate()
+    private void Update()
     {
         target = BattleManager.Ins.curPlayCharacter.GetComponent<PlayableCharacter>();
 
@@ -29,8 +28,8 @@ public class FollowCamara : MonoBehaviour
 
         rigTransform.position = Vector3.Slerp(rigTransform.position, camPosition, Time.deltaTime * cameraMoveSpeed);
 
-        rigTransform.rotation = Quaternion.Slerp(rigTransform.rotation, target.transform.rotation, Time.deltaTime * cameraRotateSpeed);
-
+        rigTransform.rotation = Quaternion.Lerp(rigTransform.rotation, target.transform.rotation, Time.deltaTime * cameraRotateSpeed);
+        
         rigTransform.LookAt(target.transform.position + (Vector3.up * targetOffset));
     }
 }

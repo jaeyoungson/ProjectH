@@ -24,7 +24,7 @@ public class PlayableCharacter : Character
                     break;
                 case CharacterState.Move:
                     break;
-                case CharacterState.Skill:   
+                case CharacterState.Battle:   
                     break;
                 case CharacterState.Stiffen:
                     break;

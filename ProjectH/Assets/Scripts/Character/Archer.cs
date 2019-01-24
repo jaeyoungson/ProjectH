@@ -11,8 +11,12 @@ public class Archer : PlayableCharacter
     private float secondCharge;
     [SerializeField]
     private float maxCharge;
-    
-    
+
+    private void Awake()
+    {
+        playCharacter = PlayCharacter.Archer;
+    }
+
     void Update()
     {
         if (playingCharacter == false)

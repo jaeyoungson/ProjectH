@@ -5,6 +5,16 @@ using UnityEngine;
 namespace Global_Define
 {
     #region enum
+    public enum ObjectPool
+    {
+        Projectile,
+        Effect,
+    }
+
+    public enum ProjectileObject
+    {
+        ArcherArrow,
+    }
 
     public enum PlayAbleLogic
     {
@@ -37,7 +47,7 @@ namespace Global_Define
         Idle=0,
         Move,
         Run,
-        Skill,
+        Battle,
         Skilling,
         Stiffen,
         Down,
@@ -71,7 +81,14 @@ namespace Global_Define
 
     public enum MageState
     {
-
+        Idle,
+        BattleIdle,
+        NormalSkill,
+        SkillNumber1,
+        SkillNumber2,
+        SkillNumber3,
+        UltimateSkill,
+        
     }
 
     public enum ArcherState
