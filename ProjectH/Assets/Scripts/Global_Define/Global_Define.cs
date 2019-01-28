@@ -4,6 +4,11 @@ using UnityEngine;
 
 namespace Global_Define
 {
+    static class Path
+    {
+        static string EffectPath;
+    }
+
     #region enum
     public enum ObjectPool
     {
@@ -11,9 +16,10 @@ namespace Global_Define
         Effect,
     }
 
-    public enum ProjectileObject
+    public enum ProjectilePool
     {
-        ArcherArrow,
+        LightningBolt,
+        LightningStrike,
     }
 
     public enum PlayAbleLogic

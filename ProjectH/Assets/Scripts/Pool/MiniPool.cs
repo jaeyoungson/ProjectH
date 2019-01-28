@@ -10,10 +10,11 @@ public class MiniPool : MonoBehaviour
 
     private int useCount;
 
-    public MiniPool()
+    private void Awake()
     {
         SetObject();
     }
+
     private void SetObject()
     {
         for(int i=0;i<count;i++)
@@ -36,6 +37,6 @@ public class MiniPool : MonoBehaviour
 
         SetObject();
 
-        return null;
+        return GetObject();
     }   
 }

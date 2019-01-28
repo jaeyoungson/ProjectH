@@ -1,18 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Global_Define;
 public class PoolKinds : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public List<MiniPool> miniPools;
 
-    // Update is called once per frame
-    void Update()
+    public ObjectPool kinds;
+
+    public GameObject GetObject(int index)
     {
-        
+        return miniPools[index].GetObject();
     }
 }
