@@ -3,8 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using Global_Define;
 
+[System.Serializable]
+public class PlayerAnim
+{
+    public AnimationClip born;
+    public AnimationClip idle;
+    public AnimationClip walk;
+    public AnimationClip attack1;
+    public AnimationClip attack2;
+    public AnimationClip attack3;
+}
+
 public class Berserker : PlayableCharacter
 {
+
+    #region
+    private float h = 0.0f;
+    private float v = 0.0f;
+    private float r = 0.0f;
+
+    private Transform tr;
+
+    public PlayerAnim playerAnim;
+
+    [HideInInspector]
+    public Animation anim;
+    #endregion
+
+    void Start()
+    {
+        tr = GetComponent<Transform>();
+        anim = GetComponent<Animation>();
+        anim.clip = playerAnim.born;
+        anim.Play();
+    }
+
     private CharacterState berserkerState;
 
 
@@ -45,6 +78,35 @@ public class Berserker : PlayableCharacter
                     break;
             }
         }
+
+        #region
+        h = Input.GetAxis("Horizontal");
+        v = Input.GetAxis("Vertical");
+        r = Input.GetAxis("Mouse X");
+
+        Vector3 moveDir = (Vector3.forward * v) + (Vector3.right * h);
+        tr.Translate(moveDir.normalized * moveSpeed * Time.deltaTime, Space.Self);
+
+        tr.Rotate(Vector3.up * moveSpeed * Time.deltaTime * r);
+
+        if(v >= 0.1f)
+        {
+            anim.CrossFade(playerAnim.walk.name, 0.3f);
+        }
+        else if(v <= -0.1f)
+        {
+            anim.CrossFade(playerAnim.walk.name, 0.3f);
+        }
+        else if(h <= -0.1f)
+        {
+            anim.CrossFade(playerAnim.walk.name, 0.3f);
+        }
+        else
+        {
+            anim.CrossFade(playerAnim.idle.name, 0.3f);
+        }
+
+        #endregion
     }
 
     private void BerserkerStateSkill()
