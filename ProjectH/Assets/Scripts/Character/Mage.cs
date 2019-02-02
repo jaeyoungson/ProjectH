@@ -16,10 +16,18 @@ public class Mage : PlayableCharacter
     public float normalReTime;
     public float cureWindReTime;
 
+    public float normalComboTime;
+
+    private Combo combo;
     private ReStiffen reStiffen =new ReStiffen() ;
     public GameObject ring;
     public GameObject rightHand;
     public GameObject leftHand;
+
+    private void Awake()
+    {
+        combo = gameObject.AddComponent<Combo>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -48,15 +56,14 @@ public class Mage : PlayableCharacter
             switch (normalskillCombo)
             {
                 case 0:
-                    normalskillCombo++;
-                    isNormalSkill = true;
+                    normalskillCombo++;                    
                     //이펙트 가져오기
                     NormalCombo1();
                     reStiffen.SetReStiffenTime(normalReTime);
                     Debug.Log("normal1");
                     break;
                 case 1:
-                    if (isNormalSkill == true)
+                    if (combo.combo == true)
                     {
                         normalskillCombo++;
                         isNormalSkill = true;
@@ -72,7 +79,7 @@ public class Mage : PlayableCharacter
                     }
                     break;
                 case 2:
-                    if (isNormalSkill == true)
+                    if (combo.combo == true)
                     {
                         //3연타 나가는 코드 만들기
                         StartCoroutine(ComboThird());
@@ -95,6 +102,7 @@ public class Mage : PlayableCharacter
     {
         GameObject bolt=PoolManager.Ins.GetObject((int)ObjectPool.Projectile, (int)ProjectilePool.LightningBolt);
         Projectile boltProjectile = bolt.GetComponent<Projectile>();
+        combo.SetSkillComboTime(normalComboTime);
         boltProjectile.SetDirection(gameObject.transform);
         bolt.SetActive(true);
     }
@@ -103,6 +111,7 @@ public class Mage : PlayableCharacter
     {
         GameObject bolt = PoolManager.Ins.GetObject((int)ObjectPool.Projectile, (int)ProjectilePool.LightningBolt);
         Projectile boltProjectile = bolt.GetComponent<Projectile>();
+        combo.SetSkillComboTime(normalComboTime);
         boltProjectile.SetDirection(gameObject.transform);
         bolt.SetActive(true);
     }
@@ -111,6 +120,7 @@ public class Mage : PlayableCharacter
     {
         GameObject strike = PoolManager.Ins.GetObject((int)ObjectPool.Projectile, (int)ProjectilePool.LightningStrike);
         strike.transform.position = gameObject.transform.position + (Vector3.up * 0.5f)+(Vector3.forward*0.5f);
+        combo.SetSkillComboTime(normalComboTime);
         strike.SetActive(true);       
     }
 

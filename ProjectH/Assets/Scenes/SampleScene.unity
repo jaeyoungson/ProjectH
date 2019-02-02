@@ -1202,6 +1202,16 @@ PrefabInstance:
       propertyPath: leftHand
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5500190962407118149, guid: 0e81b99a7feda974b9105c341964949d,
+        type: 3}
+      propertyPath: normalComboTime
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5500190962407118149, guid: 0e81b99a7feda974b9105c341964949d,
+        type: 3}
+      propertyPath: normalReTime
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 643534327720629598, guid: 0e81b99a7feda974b9105c341964949d,
         type: 3}
       propertyPath: m_LocalPosition.x
