@@ -13,12 +13,16 @@ public class Character : MonoBehaviour
     public Dictionary<AbnormalConditionState, AbnormalCondition> conditions = new Dictionary<AbnormalConditionState, AbnormalCondition>();
     
     protected int hp;
+    [HideInInspector]
     public int addHp;
     protected int sp;
+    [HideInInspector]
     public int addSp;
     protected int atk;
+    [HideInInspector]
     public int addAtk;
     protected int def;
+    [HideInInspector]
     public int addDef;
 
     protected void Awake()
