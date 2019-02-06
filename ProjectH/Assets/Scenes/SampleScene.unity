@@ -1332,7 +1332,7 @@ MonoBehaviour:
   availableSkill: 0
   normalComboTime: 0.8
   normalSkillRange: 8
-  normalReTime: 0.5
+  normalReTime: 0.3
 --- !u!114 &8204047479034209954
 MonoBehaviour:
   m_ObjectHideFlags: 0

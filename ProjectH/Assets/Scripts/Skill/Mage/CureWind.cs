@@ -31,9 +31,7 @@ public class CureWind : Skill
         }
         else
         {
-#if UNITY_EDITOR
             Debug.Log("curewind coolTime");
-#endif
         }
      
     }
