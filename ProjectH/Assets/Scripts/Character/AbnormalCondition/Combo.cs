@@ -22,7 +22,6 @@ public class Combo : MonoBehaviour
         }
     }
 
-
     public void SetSkillComboTime(float time)
     {
         curTime = 0;

@@ -22,11 +22,11 @@ public class SingletonBase<T> : MonoBehaviour
 
     protected void Awake()
     {
-        if(instance ==null)
+        if(instance == null)
         {
             instance = (T)this;
         }
-        else if (instance != gameObject)
+        else if (instance != this)
         {
             Destroy(gameObject);
         }

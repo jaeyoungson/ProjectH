@@ -664,6 +664,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1567919783
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1567919784}
+  - component: {fileID: 1567919785}
+  m_Layer: 0
+  m_Name: CureWind
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1567919784
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567919783}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1715638951}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1567919785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567919783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae52c167b98c2194c9e0c34984cfafdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolObject: {fileID: 166724, guid: 254ac81d69ffe6342ad05aa1f459477e, type: 3}
+  poolObjectList: []
+  count: 2
 --- !u!1 &1690269515
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,6 +773,7 @@ Transform:
   m_Children:
   - {fileID: 853014238}
   - {fileID: 323104166}
+  - {fileID: 1567919784}
   m_Father: {fileID: 2081493533}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -745,6 +792,7 @@ MonoBehaviour:
   miniPools:
   - {fileID: 853014239}
   - {fileID: 323104167}
+  - {fileID: 1567919785}
   kinds: 0
 --- !u!1 &1868644569
 GameObject:
@@ -763,7 +811,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &1868644571
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -817,7 +865,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1868644569}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 4.95, y: 0, z: -9.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1215944710}
@@ -1125,7 +1173,7 @@ PrefabInstance:
     - target: {fileID: 1311562870825638179, guid: 0e81b99a7feda974b9105c341964949d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.92
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1311562870825638179, guid: 0e81b99a7feda974b9105c341964949d,
         type: 3}
@@ -1212,6 +1260,16 @@ PrefabInstance:
       propertyPath: normalReTime
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 5500190962407118149, guid: 0e81b99a7feda974b9105c341964949d,
+        type: 3}
+      propertyPath: mageNormalSkill
+      value: 
+      objectReference: {fileID: 8204047479034209953}
+    - target: {fileID: 5500190962407118149, guid: 0e81b99a7feda974b9105c341964949d,
+        type: 3}
+      propertyPath: cureWind
+      value: 
+      objectReference: {fileID: 8204047479034209954}
     - target: {fileID: 643534327720629598, guid: 0e81b99a7feda974b9105c341964949d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1256,6 +1314,41 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7043150462804936173}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8204047479034209953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8204047479034209952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3de4b1cea7ad9d43b2879999f8f5888, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: MageNormalSkill
+  damage: 0
+  coolTime: 0
+  availableSkill: 0
+  normalComboTime: 0.8
+  normalSkillRange: 8
+  normalReTime: 0.5
+--- !u!114 &8204047479034209954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8204047479034209952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27961b2691fba794ca724ba38c3f103b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Curewind
+  damage: 0
+  coolTime: 2
+  availableSkill: 1
 --- !u!1001 &9129613058278600221
 PrefabInstance:
   m_ObjectHideFlags: 0

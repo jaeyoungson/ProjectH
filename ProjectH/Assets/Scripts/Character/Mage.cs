@@ -7,22 +7,15 @@ public class Mage : PlayableCharacter
 {
     public MageState mageState;
 
-    private int normalskillCombo=0;
-    private bool isNormalSkill;
-
-    public float ringRotateSpeed;
-    public float normalSkillRange;
-
     public float normalReTime;
     public float cureWindReTime;
+    public float ringRotateSpeed;
 
-    public float normalComboTime;
-
-    private Combo combo;
-    private ReStiffen reStiffen =new ReStiffen() ;
+    public Combo combo;
+    public ReStiffen reStiffen =new ReStiffen();
     public GameObject ring;
-    public GameObject rightHand;
-    public GameObject leftHand;
+    public MageNormalSkill mageNormalSkill;
+    public CureWind cureWind;
 
     private void Awake()
     {
@@ -51,97 +44,14 @@ public class Mage : PlayableCharacter
 
     public override void NormalSkill()
     {
-        if(!reStiffen.reStiffen)
-        {
-            switch (normalskillCombo)
-            {
-                case 0:
-                    normalskillCombo++;                    
-                    //이펙트 가져오기
-                    NormalCombo1();
-                    reStiffen.SetReStiffenTime(normalReTime);
-                    Debug.Log("normal1");
-                    break;
-                case 1:
-                    if (combo.combo == true)
-                    {
-                        normalskillCombo++;
-                        isNormalSkill = true;
-                        NormalCombo2();
-                        reStiffen.SetReStiffenTime(normalReTime);
-                        Debug.Log("normal2");
-                    }
-                    else
-                    {
-                        normalskillCombo = 0;
-                        isNormalSkill = false;
-                        NormalSkill();
-                    }
-                    break;
-                case 2:
-                    if (combo.combo == true)
-                    {
-                        //3연타 나가는 코드 만들기
-                        StartCoroutine(ComboThird());
-                        Debug.Log("normal3");
-                        reStiffen.SetReStiffenTime(normalReTime);
-                        NormalSkillEnd();
-                    }
-                    else
-                    {
-                        normalskillCombo = 0;
-                        isNormalSkill = false;
-                        NormalSkill();
-                    }
-                    break;
-            }
-        }       
-    }
-
-    public void NormalCombo1()
-    {
-        GameObject bolt=PoolManager.Ins.GetObject((int)ObjectPool.Projectile, (int)ProjectilePool.LightningBolt);
-        Projectile boltProjectile = bolt.GetComponent<Projectile>();
-        combo.SetSkillComboTime(normalComboTime);
-        boltProjectile.SetDirection(gameObject.transform);
-        bolt.SetActive(true);
-    }
-
-    public void NormalCombo2()
-    {
-        GameObject bolt = PoolManager.Ins.GetObject((int)ObjectPool.Projectile, (int)ProjectilePool.LightningBolt);
-        Projectile boltProjectile = bolt.GetComponent<Projectile>();
-        combo.SetSkillComboTime(normalComboTime);
-        boltProjectile.SetDirection(gameObject.transform);
-        bolt.SetActive(true);
-    }
-
-    public void NormalCombo3()
-    {
-        GameObject strike = PoolManager.Ins.GetObject((int)ObjectPool.Projectile, (int)ProjectilePool.LightningStrike);
-        strike.transform.position = gameObject.transform.position + (Vector3.up * 0.5f)+(Vector3.forward*0.5f);
-        combo.SetSkillComboTime(normalComboTime);
-        strike.SetActive(true);       
-    }
-
-    IEnumerator ComboThird()
-    {
-        NormalCombo3();
-        yield return new WaitForSeconds(0.1f);
-        NormalCombo3();
-        yield return new WaitForSeconds(0.2f);
-        NormalCombo3();
-    }
-
-    public void NormalSkillEnd()
-    {
-        normalskillCombo = 0;
-        isNormalSkill = false;
+        if (!reStiffen.reStiffen)
+            mageNormalSkill.ActiveSkill();
     }
 
     public override void SkillNumberOne()
     {
-        //장판소환후에 체력회복
+        //name: CureWind
+        cureWind.ActiveSkill();
     }
 
     public override void SkillNumberTwo()

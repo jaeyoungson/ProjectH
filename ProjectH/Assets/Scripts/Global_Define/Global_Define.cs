@@ -20,6 +20,7 @@ namespace Global_Define
     {
         LightningBolt,
         LightningStrike,
+        CureWind,
     }
 
     public enum PlayAbleLogic

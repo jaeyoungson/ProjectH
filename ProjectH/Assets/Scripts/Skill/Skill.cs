@@ -1,24 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Global_Define;
 
 public class Skill : MonoBehaviour
-{    
+{
+    public string name;
+    public int damage;
+    public float coolTime;
+    protected float curCoolTime;
+    public bool availableSkill;
 
-    public static void ActiveSkill(int index)
-    {
-        switch (index)
-        {
-            default:
-                break;
-            //인덱스에 따라서 스킬을 구현함
-            //스킬쓰는 도중에 자신의 스테이트 변경
-        }
-    }
-
-    public static void PassiveSkill(int index)
-    {
-
-    }
-    public virtual void SkillImplementation() { }
+    public virtual void ActiveSkill()           {}
+    public virtual void PassiveSkill()          {}
+    public virtual void SkillImplementation()   {}
 }

@@ -252,7 +252,7 @@ public class InputManager : ManagerBase<InputManager>
     }
     private void SkillNumberOne()
     {
-        Debug.Log("SKillNumberOne");
+        BattleManager.Ins.curPlayCharacter.GetComponent<PlayableCharacter>().SkillNumberOne();
     }
 
     private void SkillNumberTwo()
