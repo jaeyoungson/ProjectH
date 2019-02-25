@@ -9,7 +9,7 @@ public class LightningBolt : Projectile
 
     protected override void ProjectileMove()
     {
-        if(curMoveRange<range)
+        if(curMoveRange<range) //사거리check
         {
             gameObject.transform.Translate(direction * moveSpeed * Time.deltaTime);
             curMoveRange += moveSpeed * Time.deltaTime; 
