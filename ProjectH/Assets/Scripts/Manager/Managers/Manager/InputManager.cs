@@ -4,7 +4,9 @@ public class InputManager : ManagerBase<InputManager>
 {
     public GameObject playGameObject;
     public PlayableCharacter curPlayCharacter;
-
+    private Transform mainCam;
+    private Vector3 camForward;
+    private Vector3 move;
     // 키코드 변수 목록
     #region KeyCode
     private KeyCode forward;//default W
@@ -36,6 +38,7 @@ public class InputManager : ManagerBase<InputManager>
     private void Awake()
     {
         base.Awake();
+        mainCam = Camera.main.transform;
         //키코드 변수에 PlayerPrefs에 있는 커스텀된 string 값을 가져와서 그 코드로변경 없다면 디폴트 값으로 가져옴
         #region moveKey
         forward = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("forward", "W"));
@@ -73,48 +76,67 @@ public class InputManager : ManagerBase<InputManager>
         playGameObject = BattleManager.Ins.curPlayCharacter;
         curPlayCharacter = BattleManager.Ins.curPlayCharacter.GetComponent<PlayableCharacter>();
     }
-    
+
 
     void Update()
     {
         #region move
-        if(Input.GetKey(forward))
+        //if (Input.GetKey(forward))
+        //{
+        //    ForwardMove();
+        //}
+
+        if (Input.GetKeyUp(forward))
         {
-            ForwardMove();
+            ForwardMoveStop();
         }
 
-        if(Input.GetKey(backward))
+        //if (Input.GetKey(backward))
+        //{
+        //    BackwardMove();
+        //}
+
+        if (Input.GetKeyUp(backward))
         {
-            BackwardMove();
+            BackwardMoveStop();
         }
 
-        if(Input.GetKey(left))
-        {
-            LeftMove();
-        }
+        //if (Input.GetKey(left))
+        //{
+        //    LeftMove();
+        //}
 
-        if(Input.GetKey(right))
-        {
-            RightMove();
-        }
+        //if(Input.GetKeyUp(left))
+        //{
+        //    LeftMoveStop();
+        //}
 
-        if(Input.GetKeyDown(run))
+        //if (Input.GetKey(right))
+        //{
+        //    RightMove();
+        //}
+
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
+        Move(h, v);
+
+        if (Input.GetKeyDown(run))
         {
             Run();
         }
 
         #endregion
         #region CharacterChange
-        if(Input.GetKeyDown(berserker))
+        if (Input.GetKeyDown(berserker))
         {
             BerserkerChange();
         }
-        if(Input.GetKeyDown(mage))
+        if (Input.GetKeyDown(mage))
         {
             MageChange();
         }
 
-        if(Input.GetKeyDown(archer))
+        if (Input.GetKeyDown(archer))
         {
             ArcherChange();
         }
@@ -128,37 +150,37 @@ public class InputManager : ManagerBase<InputManager>
 
 
 
-        if(Input.GetKeyDown(skillNumber2))
+        if (Input.GetKeyDown(skillNumber2))
         {
             SkillNumberTwo();
         }
 
-        if(Input.GetKeyDown(skillNumber3))
+        if (Input.GetKeyDown(skillNumber3))
         {
             SkillNumberThree();
         }
 
-        if(Input.GetKeyDown(cooperationSkill))
+        if (Input.GetKeyDown(cooperationSkill))
         {
             CooperationSkill();
         }
 
-        if(Input.GetKeyDown(ultimateSkill))
+        if (Input.GetKeyDown(ultimateSkill))
         {
             UltimateSkill();
         }
 
-        if(Input.GetKeyDown(evasionSkill))
+        if (Input.GetKeyDown(evasionSkill))
         {
             EvastionSkill();
         }
-        
-        if(Input.GetKeyDown(normalAttack))
+
+        if (Input.GetKeyDown(normalAttack))
         {
             NormalSkill();
         }
 
-        if(Input.GetKeyUp(normalAttack))
+        if (Input.GetKeyUp(normalAttack))
         {
             Character character = BattleManager.Ins.curPlayCharacter.GetComponent<Character>();
             if (character.playCharacter == PlayCharacter.Archer)
@@ -173,12 +195,12 @@ public class InputManager : ManagerBase<InputManager>
             EquipOpen();
         }
 
-        if(Input.GetKeyDown(inventory))
+        if (Input.GetKeyDown(inventory))
         {
             InventoryOpen();
         }
 
-        if(Input.GetKeyDown(map))
+        if (Input.GetKeyDown(map))
         {
             MapOpen();
         }
@@ -187,24 +209,28 @@ public class InputManager : ManagerBase<InputManager>
 
     }
     #region movefuction
-    private void ForwardMove()
+
+    private void ForwardMoveStop()
     {
-        playGameObject.transform.Translate(Vector3.forward* curPlayCharacter.moveSpeed*Time.deltaTime);
+        //curPlayCharacter.
     }
 
-    private void BackwardMove()
+    private void BackwardMoveStop()
     {
-        playGameObject.transform.Translate(Vector3.back * curPlayCharacter.moveSpeed * Time.deltaTime);
+
     }
 
-    private void LeftMove()
+    private void Move(float horizontal,float vertical)
     {
-        playGameObject.transform.Translate(Vector3.left * curPlayCharacter.moveSpeed * Time.deltaTime);
-    }
 
-    private void RightMove()
-    {
-        playGameObject.transform.Translate(Vector3.right * curPlayCharacter.moveSpeed * Time.deltaTime);
+        if (mainCam != null)
+        {
+            //카메라의 정면과 x,z 를 1을 곱한후 정규화 사키면 카메라 정면에 대한 벡터가 나온다
+            camForward = Vector3.Scale(mainCam.forward, new Vector3(1, 0, 1)).normalized;
+            move = vertical * camForward + horizontal * mainCam.right;
+        }
+
+        curPlayCharacter.Move(move,horizontal,vertical);
     }
 
     private void Run()
@@ -215,7 +241,7 @@ public class InputManager : ManagerBase<InputManager>
     private void TurnMouse()
     {
         turnMouse_X = Input.GetAxis("Mouse X");
-        playGameObject.transform.Rotate(Vector3.up, X_axisRotateSpeed * Time.deltaTime * turnMouse_X);
+        Camera.main.transform.RotateAround(playGameObject.transform.position,Vector3.up,X_axisRotateSpeed * Time.deltaTime * turnMouse_X);
     }
     #endregion
 

@@ -10,26 +10,22 @@ public class FollowCamara : MonoBehaviour
     public float cameraRotateSpeed;
     public float distanceFromTarget;
     public float height;
-    public float targetOffset;
-
-    private Transform rigTransform;
+    public float targetOffset;    
 
     // Start is called before the first frame update
     void Start()
     {
-        rigTransform = transform;
+        
     }
 
     private void Update()
     {
         target = BattleManager.Ins.curPlayCharacter.GetComponent<PlayableCharacter>();
 
-        var camPosition = target.transform.position - (target.transform.forward * distanceFromTarget) + (target.transform.up * height);
+        var camPosition = target.transform.position - (Vector3.forward * distanceFromTarget) + (target.transform.up * height);
 
-        rigTransform.position = Vector3.Slerp(rigTransform.position, camPosition, Time.deltaTime * cameraMoveSpeed);
-
-        rigTransform.rotation = Quaternion.Lerp(rigTransform.rotation, target.transform.rotation, Time.deltaTime * cameraRotateSpeed);
-        
-        rigTransform.LookAt(target.transform.position + (Vector3.up * targetOffset));
+        transform.position = Vector3.Slerp(transform.position, camPosition, Time.deltaTime * cameraMoveSpeed);
+                
+        transform.LookAt(target.transform.position + (Vector3.up * targetOffset));
     }
 }

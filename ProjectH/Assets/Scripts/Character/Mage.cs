@@ -20,6 +20,7 @@ public class Mage : PlayableCharacter
     private void Awake()
     {
         combo = gameObject.AddComponent<Combo>();
+        animator = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -33,14 +34,16 @@ public class Mage : PlayableCharacter
                     break;
             }
         }
-        AroundRing();
         reStiffen.ReStiffenCheck();
+        //float h = Input.GetAxis("Horizontal");
+        //float v = Input.GetAxis("Vertical");
+        //Move(h, v);
     }
 
-    public void AroundRing()
-    {
-        ring.transform.Rotate(Vector3.up, ringRotateSpeed * Time.deltaTime,Space.World);
-    }
+    //public void AroundRing()
+    //{
+    //    ring.transform.Rotate(Vector3.up, ringRotateSpeed * Time.deltaTime,Space.World);
+    //}
 
     public override void NormalSkill()
     {
