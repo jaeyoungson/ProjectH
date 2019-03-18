@@ -11,16 +11,19 @@ public class Mage : PlayableCharacter
     public float cureWindReTime;
     public float ringRotateSpeed;
 
+    public Transform rightHand;
+
     public Combo combo;
     public ReStiffen reStiffen =new ReStiffen();
     public GameObject ring;
     public MageNormalSkill mageNormalSkill;
     public CureWind cureWind;
-
-    private void Awake()
+    
+    private new void Awake()
     {
         combo = gameObject.AddComponent<Combo>();
         animator = gameObject.GetComponent<Animator>();
+        moveCondition = true;
     }
 
     // Update is called once per frame
@@ -35,15 +38,7 @@ public class Mage : PlayableCharacter
             }
         }
         reStiffen.ReStiffenCheck();
-        //float h = Input.GetAxis("Horizontal");
-        //float v = Input.GetAxis("Vertical");
-        //Move(h, v);
     }
-
-    //public void AroundRing()
-    //{
-    //    ring.transform.Rotate(Vector3.up, ringRotateSpeed * Time.deltaTime,Space.World);
-    //}
 
     public override void NormalSkill()
     {

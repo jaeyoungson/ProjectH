@@ -10,7 +10,7 @@ public class ParticleAuto : MonoBehaviour
     }
     IEnumerator AutoSetActive()
     {
-        yield return new WaitForSeconds(gameObject.GetComponent<ParticleSystem>().duration);
+        yield return new WaitForSeconds(gameObject.GetComponent<ParticleSystem>().main.duration);
         gameObject.SetActive(false);
     }
 }

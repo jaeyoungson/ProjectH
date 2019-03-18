@@ -8,9 +8,6 @@ public class SmoothFollow : MonoBehaviour
     public float smoothTime = 10;
     public Transform target;
 
-    private float distance = 1F;
-
-
     float initialDistanceX;
     float initialDistanceZ;
     void Start()

@@ -6,7 +6,7 @@ using System;
 
 public class MageNormalSkill : Skill
 {
-    private int normalskillCombo = 0;
+    public int normalskillCombo = 0;
     private Mage mage;
     private bool isNormalSkill;
 
@@ -21,7 +21,19 @@ public class MageNormalSkill : Skill
 
     public override void ActiveSkill()
     {
-        NormalSkill();
+        
+        if(normalskillCombo ==0)
+        {
+            mage.moveCondition = false;
+            mage.animator.SetBool("Attack2", true);
+        }
+        else
+        {
+            mage.animator.SetBool("Locomotion", true);
+            mage.animator.SetBool("Attack2", true);
+        }
+          
+        
     }
 
     private void NormalSkill()
@@ -73,6 +85,7 @@ public class MageNormalSkill : Skill
     {
         GameObject bolt = PoolManager.Ins.GetObject((int)ObjectPool.Projectile, (int)ProjectilePool.LightningBolt);
         Projectile boltProjectile = bolt.GetComponent<Projectile>();
+        bolt.transform.position = gameObject.GetComponent<Mage>().rightHand.position;
         mage.combo.SetSkillComboTime(normalComboTime);
         boltProjectile.SetDirection(gameObject.transform);
         bolt.SetActive(true);
@@ -82,6 +95,7 @@ public class MageNormalSkill : Skill
     {
         GameObject bolt = PoolManager.Ins.GetObject((int)ObjectPool.Projectile, (int)ProjectilePool.LightningBolt);
         Projectile boltProjectile = bolt.GetComponent<Projectile>();
+        bolt.transform.position = gameObject.GetComponent<Mage>().rightHand.position;
         mage.combo.SetSkillComboTime(normalComboTime);
         boltProjectile.SetDirection(gameObject.transform);
         bolt.SetActive(true);
@@ -90,7 +104,7 @@ public class MageNormalSkill : Skill
     private void NormalCombo3()
     {
         GameObject strike = PoolManager.Ins.GetObject((int)ObjectPool.Projectile, (int)ProjectilePool.LightningStrike);
-        strike.transform.position = gameObject.transform.position + (Vector3.up * 0.5f) + (Vector3.forward * 0.5f);
+        strike.transform.position = gameObject.GetComponent<Mage>().rightHand.position;
         strike.transform.rotation = gameObject.transform.rotation;
         mage.combo.SetSkillComboTime(normalComboTime);
         strike.SetActive(true);
@@ -108,5 +122,11 @@ public class MageNormalSkill : Skill
     {
         normalskillCombo = 0;
         isNormalSkill = false;
+    }
+
+    public override void EndSkillAnimation()
+    {
+        mage.animator.SetBool("Locomotion", true);
+        mage.moveCondition = true;
     }
 }

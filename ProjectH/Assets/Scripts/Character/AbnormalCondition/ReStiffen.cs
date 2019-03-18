@@ -5,7 +5,8 @@ using UnityEngine;
 public class ReStiffen 
 {
     [HideInInspector]
-    public bool reStiffen;
+    public bool reStiffen;//false일시 재공격 가능,true 일시 불가능
+
     private float reStiffenTime;
     private float curReStiffenTime;
 

@@ -14,7 +14,7 @@ public class BattleManager : ManagerBase<BattleManager>
     private new void Awake()
     {
         base.Awake();
-        curPlayCharacter = playerCharacters[(int)PlayCharacter.Mage];
+        curPlayCharacter = playerCharacters[(int)PlayCharacter.Berserker];
     }
 
     public void ChangeCharacterJob(PlayCharacter nextPlaycharacter)

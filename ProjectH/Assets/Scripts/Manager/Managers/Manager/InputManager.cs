@@ -35,7 +35,7 @@ public class InputManager : ManagerBase<InputManager>
     private float turnMouse_X = 0.0f;
     public float X_axisRotateSpeed = 100.0f;
 
-    private void Awake()
+    private new void Awake()
     {
         base.Awake();
         mainCam = Camera.main.transform;
