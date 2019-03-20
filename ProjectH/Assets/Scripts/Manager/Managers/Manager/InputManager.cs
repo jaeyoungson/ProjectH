@@ -148,8 +148,6 @@ public class InputManager : ManagerBase<InputManager>
             SkillNumberOne();
         }
 
-
-
         if (Input.GetKeyDown(skillNumber2))
         {
             SkillNumberTwo();

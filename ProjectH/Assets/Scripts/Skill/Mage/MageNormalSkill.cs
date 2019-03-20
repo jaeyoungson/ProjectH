@@ -31,8 +31,7 @@ public class MageNormalSkill : Skill
         {
             mage.animator.SetBool("Locomotion", true);
             mage.animator.SetBool("Attack2", true);
-        }
-          
+        }        
         
     }
 
@@ -123,9 +122,9 @@ public class MageNormalSkill : Skill
         normalskillCombo = 0;
         isNormalSkill = false;
     }
-
     public override void EndSkillAnimation()
     {
+        var animator = gameObject.GetComponent<Animator>();
         mage.animator.SetBool("Locomotion", true);
         mage.moveCondition = true;
     }

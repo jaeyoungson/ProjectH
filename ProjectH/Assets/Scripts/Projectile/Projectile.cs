@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour
     public virtual void SetDirection(Transform characterForward)
     {
         direction = characterForward.forward;
-        gameObject.transform.position = characterForward.position;
+        //gameObject.transform.position = characterForward.position;
     }
 
 }
